@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Excon";
+  src: url(./assets/fonts/Excon-Variable.ttf);
+}
+
+body {
+  font-family: "Excon", sans-serif;
+  color: #060811;
+  background: #000;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+p {
+  font-size: 18px;
+  color: #060811b0;
+  font-weight: 300;
+}
+
+.nav_items {
+  @apply container m-auto flex h-[75px] items-center justify-between px-[18px] py-12;
+}
+
+.nav_items ul {
+  @apply flex list-none items-center gap-8 text-[15px] font-normal;
+}
+
+ul li {
+  cursor: pointer;
+}
+
+.step_progress_container {
+  @apply my-7 flex w-[376px] flex-col items-center gap-12 rounded-[10px] bg-white px-7 pt-8;
+}
+
+.step_item {
+  @apply relative flex items-center justify-start gap-6;
+}
+
+.step_item:not(:first-child):before {
+  @apply absolute -top-4 right-[287px] h-[2px] w-[10.5%] rotate-90 bg-[#06081133] content-[''];
+}
