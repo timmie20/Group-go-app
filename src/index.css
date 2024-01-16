@@ -10,7 +10,7 @@
 body {
   font-family: "Excon", sans-serif;
   color: #060811;
-  background: #000;
+  background: rgb(231, 231, 231);
 }
 
 h1 {
@@ -44,6 +44,12 @@ p {
   font-weight: 300;
 }
 
+/*buttons classes*/
+
+.primary_button {
+  @apply mt-14 w-full cursor-pointer rounded-[15px] bg-orange-clr px-6 py-[10px] text-center text-white hover:bg-opacity-50;
+}
+
 .nav_items {
   @apply container m-auto flex h-[75px] items-center justify-between px-[18px] py-12;
 }
@@ -66,4 +72,60 @@ ul li {
 
 .step_item:not(:first-child):before {
   @apply absolute -top-4 right-[287px] h-[2px] w-[10.5%] rotate-90 bg-[#06081133] content-[''];
+}
+
+.event_info_form {
+  @apply w-[500px] p-3;
+}
+
+.event_info_form label {
+  @apply text-base font-normal text-black-clr;
+}
+
+.event_info_form h4 {
+  @apply mt-10 text-2xl font-normal text-black-clr;
+}
+
+.event_info_form .email_field_div {
+  @apply mt-14 flex w-full flex-col gap-2;
+}
+
+.field_set_div {
+  @apply mt-4 flex w-full flex-col gap-2;
+}
+
+.event_info_form input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="time"],
+input[type="number"] {
+  @apply w-full rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr;
+}
+
+.event_info_form .event_description_textarea {
+  @apply w-full resize-none rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light;
+}
+
+.event_schedule_container {
+  @apply mt-5 flex flex-col gap-4;
+}
+
+.event_schedule_container .select_schedule_container {
+  @apply flex w-full items-center justify-between rounded-[15px] bg-[#F4F4F4] p-2;
+}
+
+.select_schedule_container .schedule_period {
+  @apply cursor-pointer rounded-[10px] border-[1px] border-[#F0F0F0] px-2 py-1 text-base font-normal text-black-clr;
+}
+
+.selected_schedule_period {
+  @apply bg-white;
+}
+
+.event_schedule_duration {
+  @apply flex w-full items-center gap-8;
+}
+
+.field_set_div select {
+  @apply w-full rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr;
 }
