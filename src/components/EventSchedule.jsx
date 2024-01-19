@@ -29,24 +29,44 @@ const EventSchedule = () => {
         <div className="event_schedule_duration">
           <div className="field_set_div">
             <label htmlFor="start_date">Start Date</label>
-            <input type="date" name="start_date" id="start_date" />
+            <input
+              type="date"
+              name="start_date"
+              id="start_date"
+              className="inputs"
+            />
           </div>
 
           <div className="field_set_div">
             <label htmlFor="end_date">End Date</label>
-            <input type="date" name="end_date" id="end_date" />
+            <input
+              type="date"
+              name="end_date"
+              id="end_date"
+              className="inputs"
+            />
           </div>
         </div>
 
         <div className="event_schedule_duration">
           <div className="field_set_div">
             <label htmlFor="start_time">Start Time</label>
-            <input type="time" name="start_time" id="start_time" />
+            <input
+              type="time"
+              name="start_time"
+              id="start_time"
+              className="inputs"
+            />
           </div>
 
           <div className="field_set_div">
             <label htmlFor="end_time">End Time</label>
-            <input type="time" name="end_time" id="end_time" />
+            <input
+              type="time"
+              name="end_time"
+              id="end_time"
+              className="inputs"
+            />
           </div>
         </div>
       </div>

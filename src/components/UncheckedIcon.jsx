@@ -1,11 +1,8 @@
 import React from "react";
 
-const UncheckedIcon = ({ step, setCurrentStep }) => {
+const UncheckedIcon = () => {
   return (
-    <div
-      className="h-8 w-8 rounded-full border-[1px] border-[#06081133]"
-      onClick={() => setCurrentStep(step.id)}
-    ></div>
+    <div className="h-8 w-8 rounded-full border-[1px] border-[#06081133]"></div>
   );
 };
 

@@ -53,6 +53,7 @@ const TemplateEventForm = () => {
             name="email"
             id="email"
             placeholder="Your email address"
+            className="inputs"
           />
         </div>
 
@@ -80,6 +81,7 @@ const TemplateEventForm = () => {
               name="location"
               id="location"
               placeholder="Where are you having the event?"
+              className="inputs"
             />
           </div>
         </div>
@@ -89,40 +91,44 @@ const TemplateEventForm = () => {
           <EventSchedule />
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col">
           <h4>Who’s attending the event?</h4>
-          <div className="field_set_div">
-            <label htmlFor="min_num_participant">
-              Minimum number of participants
-            </label>
-            <input
-              type="number"
-              id="min_num_participant"
-              name="min_num_participant"
-              placeholder="Minimum"
-            />
-          </div>
+          <div className="space-y-6">
+            <div className="field_set_div">
+              <label htmlFor="min_num_participant">
+                Minimum number of participants
+              </label>
+              <input
+                type="number"
+                id="min_num_participant"
+                name="min_num_participant"
+                placeholder="Minimum"
+                className="inputs"
+              />
+            </div>
 
-          <div className="field_set_div">
-            <label htmlFor="max_num_participant">
-              Maximum number of participants
-            </label>
-            <input
-              type="number"
-              id="max_num_participant"
-              name="max_num_participant"
-              placeholder="Maximum"
-            />
-          </div>
+            <div className="field_set_div">
+              <label htmlFor="max_num_participant">
+                Maximum number of participants
+              </label>
+              <input
+                type="number"
+                id="max_num_participant"
+                name="max_num_participant"
+                placeholder="Maximum"
+                className="inputs"
+              />
+            </div>
 
-          <div className="field_set_div">
-            <label htmlFor="gender">Participants gender</label>
-            <select name="gender" id="gender">
-              <option value="">select an option</option>
-              <option value="males">All male</option>
-              <option value="females">All female</option>
-              <option value="both genders">Both male and female</option>
-            </select>
+            <div className="field_set_div">
+              <label htmlFor="gender">Participants gender</label>
+              <select name="gender" id="gender">
+                <option value="">select an option</option>
+                <option value="males">All male</option>
+                <option value="females">All female</option>
+                <option value="both genders">Both male and female</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -135,11 +141,14 @@ const TemplateEventForm = () => {
               id="amount"
               name="amount"
               placeholder="0.00 (NGN)"
+              className="inputs"
             />
           </div>
         </div>
 
-        <PrimaryButton>Continue</PrimaryButton>
+        <div className="mt-12">
+          <PrimaryButton>Continue</PrimaryButton>
+        </div>
       </form>
     </>
   );

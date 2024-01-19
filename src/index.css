@@ -10,7 +10,6 @@
 body {
   font-family: "Excon", sans-serif;
   color: #060811;
-  background: rgb(231, 231, 231);
 }
 
 h1 {
@@ -47,7 +46,7 @@ p {
 /*buttons classes*/
 
 .primary_button {
-  @apply mt-14 w-full cursor-pointer rounded-[15px] bg-orange-clr px-6 py-[10px] text-center text-white hover:bg-opacity-50;
+  @apply w-full cursor-pointer rounded-[15px] bg-orange-clr px-6 py-[10px] text-center text-white hover:bg-opacity-50;
 }
 
 .nav_items {
@@ -75,7 +74,11 @@ ul li {
 }
 
 .event_info_form {
-  @apply w-[500px] p-3;
+  @apply w-[479px] p-3;
+}
+
+.inputs {
+  @apply w-full rounded-[15px] border-[1px] border-[#06081121] bg-white px-6 py-[10px] font-light text-black-clr focus:outline-none;
 }
 
 .event_info_form label {
@@ -83,7 +86,7 @@ ul li {
 }
 
 .event_info_form h4 {
-  @apply mt-10 text-2xl font-normal text-black-clr;
+  @apply my-7 text-2xl font-normal text-black-clr;
 }
 
 .event_info_form .email_field_div {
@@ -91,15 +94,7 @@ ul li {
 }
 
 .field_set_div {
-  @apply mt-4 flex w-full flex-col gap-2;
-}
-
-.event_info_form input[type="text"],
-input[type="email"],
-input[type="date"],
-input[type="time"],
-input[type="number"] {
-  @apply w-full rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr;
+  @apply flex w-full flex-col gap-2;
 }
 
 .event_info_form .event_description_textarea {
@@ -128,4 +123,43 @@ input[type="number"] {
 
 .field_set_div select {
   @apply w-full rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr;
+}
+
+.payment_info_container {
+  @apply flex w-[479px] flex-col;
+}
+
+.payment_info_container label {
+  @apply font-normal;
+}
+
+.share_link_container {
+  max-width: 479px;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.select_method_div {
+  @apply mt-2 flex h-[54px] w-full items-center justify-around rounded-[15px] border-[1px] border-[#0608110D] bg-[#F0F0F0] p-1;
+}
+
+.select_method_div span {
+  @apply w-1/2 cursor-pointer rounded-[10px] border-[1px] border-[#F4F4F4] px-2 py-1 text-center;
+}
+
+.select_method_div .selected_method {
+  background: white;
+}
+
+.send_email_form {
+  @apply flex flex-col gap-3;
+}
+
+.email_list_container {
+  @apply flex h-fit max-w-[479px] flex-wrap gap-3 rounded-[15px] px-6 py-2;
+}
+
+.email_list_container span {
+  @apply flex items-center justify-center gap-3 rounded-full border-[1px] border-[#E9E9E9] bg-[#F7F6F9] px-2 py-1 font-light text-black-clr;
 }
