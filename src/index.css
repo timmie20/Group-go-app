@@ -7,9 +7,14 @@
   src: url(./assets/fonts/Excon-Variable.ttf);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Excon", sans-serif;
-  color: #060811;
+  background: #f0f0f0;
+  overscroll-behavior: auto;
 }
 
 h1 {
@@ -45,16 +50,24 @@ p {
 
 /*buttons classes*/
 
+.app_body {
+  @apply m-auto mb-9 mt-20 flex max-w-[1200px] items-start gap-44;
+}
+
 .primary_button {
   @apply w-full cursor-pointer rounded-[15px] bg-orange-clr px-6 py-[10px] text-center text-white hover:bg-opacity-50;
 }
 
+nav {
+  @apply sticky top-0 h-fit w-full bg-white px-[48px] py-[18px];
+}
+
 .nav_items {
-  @apply container m-auto flex h-[75px] items-center justify-between px-[18px] py-12;
+  @apply flex items-center justify-between;
 }
 
 .nav_items ul {
-  @apply flex list-none items-center gap-8 text-[15px] font-normal;
+  @apply flex items-center gap-8 text-[15px] font-normal;
 }
 
 ul li {
@@ -62,19 +75,27 @@ ul li {
 }
 
 .step_progress_container {
-  @apply my-7 flex w-[376px] flex-col items-center gap-12 rounded-[10px] bg-white px-7 pt-8;
+  @apply flex w-[376px] flex-col items-center gap-12 rounded-[10px] bg-white px-7 pt-8;
 }
 
 .step_item {
   @apply relative flex items-center justify-start gap-6;
 }
 
-.step_item:not(:first-child):before {
-  @apply absolute -top-4 right-[287px] h-[2px] w-[10.5%] rotate-90 bg-[#06081133] content-[''];
+/* .step_item:not(:first-child):before {
+  @apply absolute -top-4 right-[89.9%] h-[2px] w-[10.2%] rotate-90 bg-[#06081133] content-[''];
+} */
+
+.template_module_container {
+  @apply flex flex-col gap-[6px] rounded-[10px] bg-white;
+}
+
+.template_module_container .choose_template_button {
+  @apply mx-1 my-2 flex cursor-pointer items-center justify-center rounded-lg bg-[#06081114] p-2;
 }
 
 .event_info_form {
-  @apply w-[479px] p-3;
+  @apply w-[479px];
 }
 
 .inputs {
@@ -98,7 +119,7 @@ ul li {
 }
 
 .event_info_form .event_description_textarea {
-  @apply w-full resize-none rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light;
+  @apply w-full resize-none rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr focus:outline-none;
 }
 
 .event_schedule_container {
@@ -126,7 +147,7 @@ ul li {
 }
 
 .payment_info_container {
-  @apply flex w-[479px] flex-col;
+  @apply flex w-[479px] flex-col gap-[22px];
 }
 
 .payment_info_container label {
@@ -134,10 +155,7 @@ ul li {
 }
 
 .share_link_container {
-  max-width: 479px;
-  display: flex;
-  flex-direction: column;
-  gap: 2em;
+  @apply flex w-[479px] flex-col gap-8;
 }
 
 .select_method_div {

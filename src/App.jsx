@@ -1,20 +1,25 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import StepProgress from "./components/StepProgress";
-import Template from "./components/Template";
-import TemplateEventForm from "./components/TemplateEventForm";
-import PaymentInformation from "./components/PaymentInformation";
-import ShareInviteLink from "./components/ShareInviteLink";
+import { Route, Routes } from "react-router-dom";
+import AppLayout from "./layouts/AppLayout";
+import TemplatePage from "./Pages/TemplatePage";
+import EventInfoPage from "./Pages/EventInfoPage";
+import { AppProvider } from "./context/AppContext";
+import PaymentPage from "./Pages/PaymentPage";
+import SendInvitationPage from "./Pages/SendInvitationPage";
 
 const App = () => {
   return (
     <>
-      {/* <Navbar /> */}
-      {/* <StepProgress /> */}
-      {/* <Template /> */}
-      {/* <TemplateEventForm /> */}
-      {/* <PaymentInformation /> */}
-      <ShareInviteLink />
+      <AppProvider>
+        <AppLayout>
+          <Routes>
+            <Route path="chooseTemplate" element={<TemplatePage />} />
+            <Route path="eventInformation" element={<EventInfoPage />} />
+            <Route path="paymentInformation" element={<PaymentPage />} />
+            <Route path="sendInvitation" element={<SendInvitationPage />} />
+          </Routes>
+        </AppLayout>
+      </AppProvider>
     </>
   );
 };

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import cover from "../assets/images/resturant image.jpeg";
 import EventSchedule from "./EventSchedule";
 import PrimaryButton from "./PrimaryButton";
+import { AppContext } from "../context/AppContext";
 
 const TemplateEventForm = () => {
+  const { selectedTemplate } = useContext(AppContext);
   return (
     <>
       <form className="event_info_form">
         <div className="space-y-3">
-          <p className="font-normal">Resturant Template</p>
+          <p className="font-normal">{selectedTemplate.templateName}</p>
           <div className="relative">
             <img
               src={cover}

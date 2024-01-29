@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <div className="w-full bg-white">
+      <nav>
         <div className="nav_items">
           <h4>groupgo</h4>
           <ul>
@@ -16,7 +16,7 @@ const Navbar = () => {
             </button>
           </ul>
         </div>
-      </div>
+      </nav>
     </>
   );
 };

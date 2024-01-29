@@ -1,15 +1,19 @@
 import React from "react";
-import image from "../assets/images/mini restaurant template img.png";
 
-const Template = () => {
+const Template = ({ template, handleRedirect }) => {
   return (
     <>
-      <div className="flex w-fit flex-col gap-2 rounded-[10px] bg-white px-2">
+      <div className="template_module_container">
         <div className="w-full">
-          <img src={image} alt="mini restaurant template img" />
+          <img src={template.imgUrl} alt={template.imageAlt} />
         </div>
-        <p className="text-black-clr pl-1 font-normal">Resturant Event</p>
-        <div className="my-2 flex w-full items-center justify-center rounded-lg bg-[#06081114] p-2">
+        <p className="pl-1 font-normal text-black-clr">
+          {template.templateName}
+        </p>
+        <div
+          className="choose_template_button"
+          onClick={() => handleRedirect(template.id)}
+        >
           <p className="text-[15px]"> choose template</p>
           <svg
             width="20"
