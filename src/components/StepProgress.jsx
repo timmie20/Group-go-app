@@ -15,27 +15,26 @@ const StepProgress = () => {
   }, [pathname]);
 
   const stepInfo = stepData?.find((step) => {
-    if (step.path === pathname) {
+    if ("/create" + step.path === pathname) {
       return step;
     }
   });
 
   return (
     <>
-      <div className="step_progress_container ">
+      <div className="step_progress_container">
         <div className="flex flex-col gap-6">
-          <h2 className="leading-[68px]">{stepInfo.step}</h2>
-          <p>{stepInfo.about}</p>
-          <p className="font-normal text-black ">{`step ${stepInfo.id} of ${stepData.length}`}</p>
+          <h2 className="leading-[68px]">{stepInfo?.step}</h2>
+          <p>{stepInfo?.about}</p>
+          <p className="font-normal text-black ">{`step ${stepInfo?.id} of ${stepData?.length}`}</p>
           <div className="flex flex-col gap-8">
-            {stepData.map((step, i) => (
+            {stepData?.map((step, i) => (
               <div className="step_item" key={i}>
-                {step.path === currentStep ? (
+                
                   <CheckedIcon />
-                ) : (
-                  <UncheckedIcon />
-                )}
-                <p className="font-light text-black">{step.step}</p>
+                  {/* <UncheckedIcon /> */}
+                
+                <p className="font-light text-black">{step?.step}</p>
               </div>
             ))}
           </div>

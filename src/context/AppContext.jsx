@@ -15,7 +15,7 @@ export const AppProvider = ({ children }) => {
       return;
     } else {
       setSelectedTemplate(selectTemplate);
-      navigate("/eventInformation");
+      navigate("/create/event");
     }
   };
 
