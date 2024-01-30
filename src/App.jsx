@@ -6,6 +6,8 @@ import EventInfoPage from "./Pages/EventInfoPage";
 import { AppProvider } from "./context/AppContext";
 import PaymentPage from "./Pages/PaymentPage";
 import SendInvitationPage from "./Pages/SendInvitationPage";
+import Home from "./Pages/Home";
+import CreateEvent from "./Pages/CreateEvent";
 
 const App = () => {
   return (
@@ -13,10 +15,15 @@ const App = () => {
       <AppProvider>
         <AppLayout>
           <Routes>
-            <Route path="chooseTemplate" element={<TemplatePage />} />
-            <Route path="eventInformation" element={<EventInfoPage />} />
-            <Route path="paymentInformation" element={<PaymentPage />} />
-            <Route path="sendInvitation" element={<SendInvitationPage />} />
+            <Route path="/">
+              <Route index element={<Home />}/>
+              <Route path="/create" element={<CreateEvent />}>
+                <Route index element={<TemplatePage />} />
+                <Route path="event" element={<EventInfoPage />} />
+                <Route path="payment" element={<PaymentPage />} />
+                <Route path="invitation" element={<SendInvitationPage />} />
+              </Route>
+            </Route>
           </Routes>
         </AppLayout>
       </AppProvider>

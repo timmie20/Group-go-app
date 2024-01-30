@@ -3,7 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <>
-      <nav>
+      <nav className="">
         <div className="nav_items">
           <h4>groupgo</h4>
           <ul>

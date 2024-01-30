@@ -8,7 +8,6 @@ const AppLayout = ({ children }) => {
       <div className="app_container">
         <Navbar />
         <main className="app_body">
-          <StepProgress />
           {children}
         </main>
       </div>

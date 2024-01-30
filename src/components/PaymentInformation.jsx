@@ -1,5 +1,6 @@
 import React from "react";
 import PrimaryButton from "./PrimaryButton";
+import { Link } from "react-router-dom";
 
 const PaymentInformation = () => {
   return (
@@ -28,7 +29,8 @@ const PaymentInformation = () => {
           />
         </div>
         <div className="mt-10">
-          <PrimaryButton>Create event</PrimaryButton>
+          {/* <PrimaryButton>Create event</PrimaryButton> */}
+          <Link className="primary_button block" to="/create/invitation">Create event</Link>
         </div>
       </form>
     </>

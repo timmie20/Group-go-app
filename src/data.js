@@ -3,26 +3,26 @@ export function getData() {
     stepData: [
       {
         id: 1,
-        path: "/chooseTemplate",
+        path: "",
         step: "choose event template",
         about:
           "Pick the type of event you want to create so we can tailor your needs",
       },
       {
         id: 2,
-        path: "/eventInformation",
+        path: "/event",
         step: "Event Information",
         about: "Tell us all we need to know about your event",
       },
       {
         id: 3,
-        path: "/paymentInformation",
+        path: "/payment",
         step: "Payment Information",
         about: "Put in your payment information for withdrawing event payments",
       },
       {
         id: 4,
-        path: "/sendInvitation",
+        path: "/invitation",
         step: "Send invite link",
         about:
           "Now that your event has been created, share your event link to fans, and members of your community",
