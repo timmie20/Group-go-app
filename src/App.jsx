@@ -15,7 +15,7 @@ const App = () => {
           <Routes>
             <Route path="chooseTemplate" element={<TemplatePage />} />
             <Route path="eventInformation" element={<EventInfoPage />} />
-            <Route path="paymentInformation" element={<PaymentPage />} />
+            <Route path="paymentinformation" element={<PaymentPage />} />
             <Route path="sendInvitation" element={<SendInvitationPage />} />
           </Routes>
         </AppLayout>

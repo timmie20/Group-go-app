@@ -16,7 +16,7 @@ export function getData() {
       },
       {
         id: 3,
-        path: "/paymentInformation",
+        path: "/paymentinformation",
         step: "Payment Information",
         about: "Put in your payment information for withdrawing event payments",
       },
