@@ -50,8 +50,12 @@ p {
 
 /*buttons classes*/
 
+.app_container {
+  @apply static
+}
+
 .app_body {
-  @apply m-auto mb-9 mt-20 flex max-w-[1200px] items-start gap-44;
+  @apply m-auto relative mb-9 mt-20 flex max-w-[1200px] items-start gap-44;
 }
 
 .primary_button {
@@ -59,7 +63,7 @@ p {
 }
 
 nav {
-  @apply sticky top-0 h-fit w-full bg-white px-[48px] py-[18px];
+  @apply sticky h-fit w-full bg-white px-[48px] py-[18px] z-10;
 }
 
 .nav_items {
@@ -75,7 +79,7 @@ ul li {
 }
 
 .step_progress_container {
-  @apply flex w-[376px] flex-col items-center gap-12 rounded-[10px] bg-white px-7 pt-8;
+  @apply flex w-[376px] sticky top-10 bottom-0 flex-col items-center gap-12 rounded-[10px] bg-white px-7 pt-8;
 }
 
 .step_item {
