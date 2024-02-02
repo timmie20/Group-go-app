@@ -1,39 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UncheckedIcon from "./UncheckedIcon";
 import imageIllustration from "../assets/images/Three girlfriends drink tea at home and talk.png";
-import { useLocation } from "react-router-dom";
 import CheckedIcon from "./CheckedIcon";
-import { getData } from "../data";
+import { AppContext } from "../context/AppContext";
 
 const StepProgress = () => {
-  const { stepData } = getData();
-  const { pathname } = useLocation();
-  const [currentStep, setCurrentStep] = useState();
+  const { stepData, setStepData, currentStep } = useContext(AppContext)
 
+  const markChecked = () => {
+    const newStep = stepData.map(step => {
+      if (step.id === currentStep.id) {
+          return { ...step, checked: true }
+        }
+      else {
+        return step
+      }
+    })
+    setStepData(newStep)
+  }
+  
   useEffect(() => {
-    setCurrentStep(pathname);
-  }, [pathname]);
-
-  const stepInfo = stepData?.find((step) => {
-    if ("/create" + step.path === pathname) {
-      return step;
-    }
-  });
+    markChecked()
+  }, [currentStep])
 
   return (
     <>
       <div className="step_progress_container">
         <div className="flex flex-col gap-6">
-          <h2 className="leading-[68px]">{stepInfo?.step}</h2>
-          <p>{stepInfo?.about}</p>
-          <p className="font-normal text-black ">{`step ${stepInfo?.id} of ${stepData?.length}`}</p>
+          <h2 className="leading-[68px]">{currentStep?.step}</h2>
+          <p>{currentStep?.about}</p>
+          <p className="font-normal text-black ">{`step ${currentStep?.id} of ${stepData?.length}`}</p>
           <div className="flex flex-col gap-8">
             {stepData?.map((step, i) => (
               <div className="step_item" key={i}>
-                
-                  <CheckedIcon />
-                  {/* <UncheckedIcon /> */}
-                
+                  {step.checked ? <CheckedIcon /> : <UncheckedIcon /> }               
                 <p className="font-light text-black">{step?.step}</p>
               </div>
             ))}

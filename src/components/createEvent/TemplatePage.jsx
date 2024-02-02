@@ -1,5 +1,5 @@
 import React from "react";
-import TemplateContainer from "../components/TemplateContainer";
+import TemplateContainer from "../TemplateContainer";
 
 const TemplatePage = () => {
   return (
