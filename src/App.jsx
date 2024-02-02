@@ -17,12 +17,6 @@ const App = () => {
           <Routes>
             <Route path="/">
               <Route index element={<Home />}/>
-              {/* <Route path="/create" element={<CreateEvent />}>
-                <Route index element={<TemplatePage />} />
-                <Route path="event" element={<EventInfoPage />} />
-                <Route path="payment" element={<PaymentPage />} />
-                <Route path="invitation" element={<SendInvitationPage />} />
-              </Route> */}
               <Route path="/create" element={<CreateEvent />} />
             </Route>
           </Routes>
