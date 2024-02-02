@@ -8,7 +8,7 @@ import PaymentPage from '../components/createEvent/PaymentPage'
 import SendInvitationPage from '../components/createEvent/SendInvitationPage'
 
 const CreateEvent = () => {
-  const { stepData, currentStep } = useContext(AppContext)
+  const { currentStep } = useContext(AppContext)
 
   const mapping = {
     "template": <TemplatePage />,
@@ -16,7 +16,6 @@ const CreateEvent = () => {
     "payment": <PaymentPage />,
     "invite": <SendInvitationPage />
   }
-  console.log(currentStep)
 
   return (
     <>
