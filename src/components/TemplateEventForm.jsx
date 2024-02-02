@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import cover from "../assets/images/resturant image.jpeg";
 import EventSchedule from "./EventSchedule";
-import PrimaryButton from "./PrimaryButton";
 import { AppContext } from "../context/AppContext";
-import { Link, useNavigate } from "react-router-dom";
 
 const TemplateEventForm = () => {
   const { selectedTemplate, setCurrentStep, stepData } = useContext(AppContext);
@@ -151,7 +149,12 @@ const TemplateEventForm = () => {
         </div>
 
         <div className="mt-12">
-          <button onClick={() => setCurrentStep(stepData[2])} className="primary_button block">Continue</button>
+          <button
+            onClick={() => setCurrentStep(stepData[2])}
+            className="primary_button block"
+          >
+            Continue
+          </button>
         </div>
       </form>
     </>

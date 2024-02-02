@@ -1,14 +1,12 @@
 import { createContext, useState } from "react";
 import { getData } from "../data";
-import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
   const [selectedTemplate, setSelectedTemplate] = useState("");
-  const [stepData, setStepData] = useState(getData().stepData)
-  const [currentStep, setCurrentStep] = useState(stepData[0])
-  const navigate = useNavigate();
+  const [stepData, setStepData] = useState(getData().stepData);
+  const [currentStep, setCurrentStep] = useState(stepData[0]);
   const { templateData } = getData();
 
   const handleRedirect = (id) => {
@@ -17,14 +15,21 @@ export const AppProvider = ({ children }) => {
       return;
     } else {
       setSelectedTemplate(selectTemplate);
-      setCurrentStep(stepData[1])
-      // navigate("/create/event");
+      setCurrentStep(stepData[1]);
     }
   };
 
   return (
     <AppContext.Provider
-      value={{ templateData, handleRedirect, selectedTemplate, stepData, setStepData, currentStep, setCurrentStep }}
+      value={{
+        templateData,
+        handleRedirect,
+        selectedTemplate,
+        stepData,
+        setStepData,
+        currentStep,
+        setCurrentStep,
+      }}
     >
       {children}
     </AppContext.Provider>
