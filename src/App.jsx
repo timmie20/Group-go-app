@@ -1,11 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import AppLayout from "./layouts/AppLayout";
-import TemplatePage from "./components/createEvent/TemplatePage";
-import EventInfoPage from "./components/createEvent/EventInfoPage";
 import { AppProvider } from "./context/AppContext";
-import PaymentPage from "./components/createEvent/PaymentPage";
-import SendInvitationPage from "./components/createEvent/SendInvitationPage";
 import Home from "./Pages/Home";
 import CreateEvent from "./Pages/CreateEvent";
 
