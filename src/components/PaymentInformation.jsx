@@ -1,8 +1,9 @@
-import React from "react";
-import PrimaryButton from "./PrimaryButton";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const PaymentInformation = () => {
+  const { setCurrentStep, stepData } = useContext(AppContext)
+
   return (
     <>
       <form className="payment_info_container">
@@ -29,8 +30,7 @@ const PaymentInformation = () => {
           />
         </div>
         <div className="mt-10">
-          {/* <PrimaryButton>Create event</PrimaryButton> */}
-          <Link className="primary_button block" to="/create/invitation">Create event</Link>
+        <button onClick={() => setCurrentStep(stepData[3])} className="primary_button block">Continue</button>
         </div>
       </form>
     </>

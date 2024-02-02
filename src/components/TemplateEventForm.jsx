@@ -3,10 +3,11 @@ import cover from "../assets/images/resturant image.jpeg";
 import EventSchedule from "./EventSchedule";
 import PrimaryButton from "./PrimaryButton";
 import { AppContext } from "../context/AppContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TemplateEventForm = () => {
-  const { selectedTemplate } = useContext(AppContext);
+  const { selectedTemplate, setCurrentStep, stepData } = useContext(AppContext);
+
   return (
     <>
       <form className="event_info_form">
@@ -150,8 +151,7 @@ const TemplateEventForm = () => {
         </div>
 
         <div className="mt-12">
-          {/* <PrimaryButton>Continue</PrimaryButton> */}
-          <Link className="primary_button block" to="/create/payment">Continue</Link>
+          <button onClick={() => setCurrentStep(stepData[2])} className="primary_button block">Continue</button>
         </div>
       </form>
     </>
