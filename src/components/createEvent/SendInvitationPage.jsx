@@ -1,5 +1,5 @@
 import React from "react";
-import ShareInviteLink from "../components/ShareInviteLink";
+import ShareInviteLink from "../ShareInviteLink";
 
 const SendInvitationPage = () => {
   return (

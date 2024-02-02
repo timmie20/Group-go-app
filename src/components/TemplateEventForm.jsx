@@ -6,23 +6,7 @@ import { AppContext } from "../context/AppContext";
 import { Link, useNavigate } from "react-router-dom";
 
 const TemplateEventForm = () => {
-  const { selectedTemplate, setStepData, stepData } = useContext(AppContext);
-  const navigate = useNavigate()
-
-  // const markChecked = (e) => {
-  //   e.preventDefault()
-  //   const newStep = stepData.map(step => {
-  //     if (step.id === 3) {
-  //       return { ...step, checked: true }
-  //     }
-  //     else {
-  //       return step
-  //     }
-  //   })
-  //   setStepData(newStep)
-  //   console.log(stepData)
-  //   navigate("/create/payment");
-  // }
+  const { selectedTemplate, setCurrentStep, stepData } = useContext(AppContext);
 
   return (
     <>
@@ -167,9 +151,7 @@ const TemplateEventForm = () => {
         </div>
 
         <div className="mt-12">
-          {/* <PrimaryButton>Continue</PrimaryButton> */}
-          {/* <button onClick={markChecked} className="primary_button block">Continue</button> */}
-          <Link className="primary_button block" to="/create/payment">Continue</Link>
+          <button onClick={() => setCurrentStep(stepData[2])} className="primary_button block">Continue</button>
         </div>
       </form>
     </>

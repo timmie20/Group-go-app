@@ -7,6 +7,7 @@ export const AppContext = createContext(null);
 export const AppProvider = ({ children }) => {
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [stepData, setStepData] = useState(getData().stepData)
+  const [currentStep, setCurrentStep] = useState(stepData[0])
   const navigate = useNavigate();
   const { templateData } = getData();
 
@@ -16,25 +17,14 @@ export const AppProvider = ({ children }) => {
       return;
     } else {
       setSelectedTemplate(selectTemplate);
-      // const step = stepData.find((step) => step.id === 2)
-      // setStepData([...stepData, { ...step, checked: true } ])
-      // const newStep = stepData.map(step => {
-      //   if (step.id === 2) {
-      //     return { ...step, checked: true }
-      //   }
-      //   else {
-      //     return step
-      //   }
-      // })
-      // setStepData(newStep)
-      // console.log(stepData)
-      navigate("/create/event");
+      setCurrentStep(stepData[1])
+      // navigate("/create/event");
     }
   };
 
   return (
     <AppContext.Provider
-      value={{ templateData, handleRedirect, selectedTemplate, stepData, setStepData }}
+      value={{ templateData, handleRedirect, selectedTemplate, stepData, setStepData, currentStep, setCurrentStep }}
     >
       {children}
     </AppContext.Provider>

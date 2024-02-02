@@ -1,5 +1,5 @@
 import React from "react";
-import TemplateEventForm from "../components/TemplateEventForm";
+import TemplateEventForm from "../TemplateEventForm";
 
 const EventInfoPage = () => {
   return (
