@@ -5,23 +5,22 @@ import CheckedIcon from "./CheckedIcon";
 import { AppContext } from "../context/AppContext";
 
 const StepProgress = () => {
-  const { stepData, setStepData, currentStep } = useContext(AppContext)
+  const { stepData, setStepData, currentStep } = useContext(AppContext);
 
   const markChecked = () => {
-    const newStep = stepData.map(step => {
+    const newStep = stepData.map((step) => {
       if (step.id === currentStep.id) {
-          return { ...step, checked: true }
-        }
-      else {
-        return step
+        return { ...step, checked: true };
+      } else {
+        return step;
       }
-    })
-    setStepData(newStep)
-  }
-  
+    });
+    setStepData(newStep);
+  };
+
   useEffect(() => {
-    markChecked()
-  }, [currentStep])
+    markChecked();
+  }, [currentStep]);
 
   return (
     <>
@@ -33,7 +32,7 @@ const StepProgress = () => {
           <div className="flex flex-col gap-8">
             {stepData?.map((step, i) => (
               <div className="step_item" key={i}>
-                  {step.checked ? <CheckedIcon /> : <UncheckedIcon /> }               
+                {step.checked ? <CheckedIcon /> : <UncheckedIcon />}
                 <p className="font-light text-black">{step?.step}</p>
               </div>
             ))}

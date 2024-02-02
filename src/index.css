@@ -51,11 +51,11 @@ p {
 /*buttons classes*/
 
 .app_container {
-  @apply static
+  @apply static;
 }
 
 .app_body {
-  @apply m-auto relative mb-9 mt-20 flex max-w-[1200px] items-start gap-44;
+  @apply relative m-auto mb-9 mt-20 flex max-w-[1200px] items-start gap-44;
 }
 
 .primary_button {
@@ -63,7 +63,7 @@ p {
 }
 
 nav {
-  @apply sticky h-fit w-full bg-white px-[48px] py-[18px] z-10;
+  @apply sticky z-10 h-fit w-full bg-white px-[48px] py-[18px];
 }
 
 .nav_items {
@@ -79,16 +79,16 @@ ul li {
 }
 
 .step_progress_container {
-  @apply flex w-[376px] sticky top-10 bottom-0 flex-col items-center gap-12 rounded-[10px] bg-white px-7 pt-8;
+  @apply sticky bottom-0 top-10 flex w-[376px] flex-col items-center gap-12 rounded-[10px] bg-white px-7 pt-8;
 }
 
 .step_item {
   @apply relative flex items-center justify-start gap-6;
 }
 
-/* .step_item:not(:first-child):before {
+.step_item:not(:first-child):before {
   @apply absolute -top-4 right-[89.9%] h-[2px] w-[10.2%] rotate-90 bg-[#06081133] content-[''];
-} */
+}
 
 .template_module_container {
   @apply flex flex-col gap-[6px] rounded-[10px] bg-white;
