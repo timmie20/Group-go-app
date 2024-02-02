@@ -1,24 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import UncheckedIcon from "./UncheckedIcon";
 import imageIllustration from "../assets/images/Three girlfriends drink tea at home and talk.png";
 import { useLocation } from "react-router-dom";
 import CheckedIcon from "./CheckedIcon";
-import { getData } from "../data";
+import { AppContext } from "../context/AppContext";
 
 const StepProgress = () => {
-  const { stepData } = getData();
+  const { stepData, setStepData } = useContext(AppContext)
   const { pathname } = useLocation();
-  const [currentStep, setCurrentStep] = useState();
+  const [stepInfo, setStepInfo] = useState(stepData[0])
+  // const [paths, setPaths] = useState(['/create', '/create/event', '/'])
+
+  const markChecked = (id) => {
+    const newStep = stepData.map(step => {
+      if (step.id === id) {
+        return { ...step, checked: true }
+      }
+      else {
+        return step
+      }
+    })
+    setStepData(newStep)
+    console.log(stepData)
+  }
 
   useEffect(() => {
-    setCurrentStep(pathname);
-  }, [pathname]);
-
-  const stepInfo = stepData?.find((step) => {
-    if ("/create" + step.path === pathname) {
-      return step;
-    }
-  });
+    stepData?.find((step) => {
+      if ("/create" + step.path === pathname) {
+        markChecked(step.id)
+        setStepInfo(step)
+        console.log(step)
+      }
+    });
+  }, [pathname])
 
   return (
     <>
@@ -30,10 +44,7 @@ const StepProgress = () => {
           <div className="flex flex-col gap-8">
             {stepData?.map((step, i) => (
               <div className="step_item" key={i}>
-                
-                  <CheckedIcon />
-                  {/* <UncheckedIcon /> */}
-                
+                  {step.checked ? <CheckedIcon /> : <UncheckedIcon /> }               
                 <p className="font-light text-black">{step?.step}</p>
               </div>
             ))}

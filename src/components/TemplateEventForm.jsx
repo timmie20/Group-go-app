@@ -3,10 +3,27 @@ import cover from "../assets/images/resturant image.jpeg";
 import EventSchedule from "./EventSchedule";
 import PrimaryButton from "./PrimaryButton";
 import { AppContext } from "../context/AppContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TemplateEventForm = () => {
-  const { selectedTemplate } = useContext(AppContext);
+  const { selectedTemplate, setStepData, stepData } = useContext(AppContext);
+  const navigate = useNavigate()
+
+  // const markChecked = (e) => {
+  //   e.preventDefault()
+  //   const newStep = stepData.map(step => {
+  //     if (step.id === 3) {
+  //       return { ...step, checked: true }
+  //     }
+  //     else {
+  //       return step
+  //     }
+  //   })
+  //   setStepData(newStep)
+  //   console.log(stepData)
+  //   navigate("/create/payment");
+  // }
+
   return (
     <>
       <form className="event_info_form">
@@ -151,6 +168,7 @@ const TemplateEventForm = () => {
 
         <div className="mt-12">
           {/* <PrimaryButton>Continue</PrimaryButton> */}
+          {/* <button onClick={markChecked} className="primary_button block">Continue</button> */}
           <Link className="primary_button block" to="/create/payment">Continue</Link>
         </div>
       </form>

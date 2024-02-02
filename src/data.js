@@ -3,6 +3,7 @@ export function getData() {
     stepData: [
       {
         id: 1,
+        checked: true,
         path: "",
         step: "choose event template",
         about:
@@ -10,18 +11,21 @@ export function getData() {
       },
       {
         id: 2,
+        checked: false,
         path: "/event",
         step: "Event Information",
         about: "Tell us all we need to know about your event",
       },
       {
         id: 3,
+        checked: false,
         path: "/payment",
         step: "Payment Information",
         about: "Put in your payment information for withdrawing event payments",
       },
       {
         id: 4,
+        checked: false,
         path: "/invitation",
         step: "Send invite link",
         about:
