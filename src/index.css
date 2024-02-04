@@ -122,6 +122,10 @@ ul li {
   @apply flex w-full flex-col gap-2;
 }
 
+.field_set_div select {
+  @apply w-full rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr;
+}
+
 .event_info_form .event_description_textarea {
   @apply w-full resize-none rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr focus:outline-none;
 }
@@ -144,10 +148,6 @@ ul li {
 
 .event_schedule_duration {
   @apply flex w-full items-center gap-8;
-}
-
-.field_set_div select {
-  @apply w-full rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr;
 }
 
 .payment_info_container {
@@ -184,4 +184,8 @@ ul li {
 
 .email_list_container span {
   @apply flex items-center justify-center gap-3 rounded-full border-[1px] border-[#E9E9E9] bg-[#F7F6F9] px-2 py-1 font-light text-black-clr;
+}
+
+.signin_btn {
+  @apply w-full cursor-pointer rounded-[15px] px-6 py-[10px] text-center hover:bg-opacity-50;
 }
