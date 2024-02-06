@@ -17,6 +17,7 @@ export const AuthContextProvider = ({ children }) => {
   const [user] = useAuthState(auth);
   const [email, setEmail] = useState("");
   const [isEmailLinkLoadong, setIsEmailLinkLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [alertMsg, setAlertMsg] = useState("");
   const { search } = useLocation();
   const navigate = useNavigate("");
@@ -25,8 +26,9 @@ export const AuthContextProvider = ({ children }) => {
     // URL you want to redirect back to. The domain (www.example.com) for this
     // URL must be in the authorized domains list in the Firebase Console.
     url: "https://groupgo.netlify.app/create",
+    // url: "http://localhost:5173/create",
     handleCodeInApp: true,
-    dynamicLinkDomain: "groupgo.netlify.app",
+    // dynamicLinkDomain: "groupgo.netlify.app",
   };
 
   const sendEmailLink = async (event, email) => {
@@ -43,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
       })
       .catch((err) => {
         console.log(err.message);
+        setErrorMsg(`Sign in error :- ${err.message}`);
       });
   };
 
@@ -110,7 +113,10 @@ export const AuthContextProvider = ({ children }) => {
         alertMsg,
         signInWithGoogle,
         isEmailLinkLoadong,
+        setIsEmailLinkLoading,
         handleLogOut,
+        errorMsg,
+        setErrorMsg,
       }}
     >
       {children}
