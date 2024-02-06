@@ -21,6 +21,9 @@ const Signin = () => {
     alertMsg,
     signInWithGoogle,
     isEmailLinkLoadong,
+    setIsEmailLinkLoading,
+    errorMsg,
+    setErrorMsg,
   } = useContext(AuthContext);
 
   useEffect(() => {
@@ -51,6 +54,13 @@ const Signin = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setErrorMsg("");
+      setIsEmailLinkLoading(false);
+    }, 4000);
+  }, [errorMsg]);
 
   return (
     <>
@@ -90,6 +100,12 @@ const Signin = () => {
                     <div className="flex items-center gap-1">
                       <HiOutlineBellAlert color="red" />
                       <span className="text-[12px]">{alertMsg}</span>
+                    </div>
+                  )}
+                  {errorMsg && (
+                    <div className="flex items-center gap-1">
+                      <HiOutlineBellAlert color="red" />
+                      <span className="text-[12px]">{errorMsg}</span>
                     </div>
                   )}
                 </fieldset>
