@@ -1,9 +1,11 @@
 import { createContext, useState } from "react";
 import { auth } from "../config/firebase";
 import {
+  GoogleAuthProvider,
   isSignInWithEmailLink,
   sendSignInLinkToEmail,
   signInWithEmailLink,
+  signInWithPopup,
 } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -18,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate("");
 
   const actionCodeSettings = {
-    url: "http://localhost:5173/signin?",
+    url: "http://localhost:5173/create",
     handleCodeInApp: true,
   };
 
@@ -36,7 +38,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const handleSignInUser = () => {
     if (user) {
-      navigate("/create");
+      return;
     } else {
       if (isSignInWithEmailLink(auth, window.location.href)) {
         let email = window.localStorage.getItem("emailForSignIn");
@@ -58,6 +60,11 @@ export const AuthContextProvider = ({ children }) => {
       }
     }
   };
+
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -69,6 +76,7 @@ export const AuthContextProvider = ({ children }) => {
         navigate,
         search,
         alertMsg,
+        signInWithGoogle,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import { FcGoogle } from "react-icons/fc";
+import { FiAlertCircle } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiOutlineBellAlert } from "react-icons/hi2";
 
@@ -14,11 +15,25 @@ const Signin = () => {
     user,
     search,
     alertMsg,
+    signInWithGoogle,
   } = useContext(AuthContext);
 
-  useEffect(() => {
-    handleSignInUser();
-  }, [user, navigate, search]);
+  // useEffect(() => {
+  //   handleSignInUser();
+  // }, [user, navigate, search]);
+
+  const handleGoogleSignin = async () => {
+    try {
+      await signInWithGoogle();
+      if (user) {
+        navigate("/create");
+      } else {
+        console.log("unable to sign in");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -27,7 +42,6 @@ const Signin = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={() => setIsOpen(false)}
           className="fixed inset-0 z-50 grid cursor-pointer place-items-center overflow-y-scroll bg-slate-900/20 p-8 backdrop-blur"
         >
           <motion.div
@@ -37,6 +51,8 @@ const Signin = () => {
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-lg cursor-default overflow-hidden rounded-lg bg-white px-14 py-16 shadow-xl"
           >
+            <FiAlertCircle className="absolute -right-24 -top-24 z-0 rotate-12 text-[250px] text-red-200" />
+
             <form onSubmit={(event) => sendEmailLink(event, email)}>
               <div>
                 <h2>groupgo</h2>
@@ -67,7 +83,10 @@ const Signin = () => {
                   >
                     continue with email
                   </button>
-                  <div className="signin_btn mt-3 flex items-center justify-center gap-2 bg-[#F8F8F8] text-black-clr">
+                  <div
+                    className="signin_btn mt-3 flex items-center justify-center gap-2 bg-[#F8F8F8] text-black-clr"
+                    onClick={handleGoogleSignin}
+                  >
                     <FcGoogle size={24} />
                     <span>Continue with google</span>
                   </div>
