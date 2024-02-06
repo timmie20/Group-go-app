@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
+  const { handleLogOut } = useContext(AuthContext);
   return (
     <>
       <nav className="">
@@ -14,6 +16,7 @@ const Navbar = () => {
             <button className="rounded-[10px] bg-orange-clr px-[18px] py-2 text-white">
               Create event
             </button>
+            <button onClick={handleLogOut}>logout</button>
           </ul>
         </div>
       </nav>

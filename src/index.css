@@ -187,5 +187,13 @@ ul li {
 }
 
 .signin_btn {
-  @apply w-full cursor-pointer rounded-[15px] px-6 py-[10px] text-center hover:bg-opacity-50;
+  @apply flex w-full cursor-pointer items-center justify-center rounded-[15px] px-6 py-[10px] hover:bg-opacity-50;
+}
+
+.signin_bg_overlay {
+  @apply fixed inset-0 z-50 grid cursor-pointer place-items-center overflow-y-scroll bg-black/10 p-8 backdrop-blur;
+}
+
+.signin_container {
+  @apply relative w-full max-w-lg cursor-default overflow-hidden rounded-lg bg-white px-14 py-16 shadow-xl;
 }
