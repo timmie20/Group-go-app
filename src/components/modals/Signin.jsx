@@ -1,11 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { FiAlertCircle } from "react-icons/fi";
+import Loader from "../../assets/images/loader.svg";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiOutlineBellAlert } from "react-icons/hi2";
+import * as EmailValidator from "email-validator";
 
 const Signin = () => {
+  const [isValidEmail, setIsValidEmail] = useState(false);
+
   const {
     email,
     setEmail,
@@ -16,11 +20,24 @@ const Signin = () => {
     search,
     alertMsg,
     signInWithGoogle,
+    isEmailLinkLoadong,
   } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   handleSignInUser();
-  // }, [user, navigate, search]);
+  useEffect(() => {
+    handleSignInUser();
+  }, [user, navigate, search]);
+
+  const emailRef = useRef("");
+
+  useEffect(() => {
+    if (
+      email !== emailRef.current ||
+      isValidEmail !== EmailValidator.validate(email)
+    ) {
+      setIsValidEmail(EmailValidator.validate(email));
+      emailRef.current = email; // Update reference with new email
+    }
+  }, [email, isValidEmail]);
 
   const handleGoogleSignin = async () => {
     try {
@@ -42,14 +59,14 @@ const Signin = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 grid cursor-pointer place-items-center overflow-y-scroll bg-slate-900/20 p-8 backdrop-blur"
+          className="signin_bg_overlay"
         >
           <motion.div
             initial={{ scale: 0, rotate: "12.5deg" }}
             animate={{ scale: 1, rotate: "0deg" }}
             exit={{ scale: 0, rotate: "0deg" }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg cursor-default overflow-hidden rounded-lg bg-white px-14 py-16 shadow-xl"
+            className="signin_container"
           >
             <FiAlertCircle className="absolute -right-24 -top-24 z-0 rotate-12 text-[250px] text-red-200" />
 
@@ -78,13 +95,18 @@ const Signin = () => {
                 </fieldset>
                 <div>
                   <button
-                    className="signin_btn bg-orange-clr text-white "
+                    className="signin_btn bg-orange-clr text-white disabled:cursor-not-allowed disabled:opacity-30"
                     type="submit"
+                    disabled={isValidEmail === false}
                   >
-                    continue with email
+                    {isEmailLinkLoadong ? (
+                      <img src={Loader} alt="loader" />
+                    ) : (
+                      "continue with email"
+                    )}
                   </button>
                   <div
-                    className="signin_btn mt-3 flex items-center justify-center gap-2 bg-[#F8F8F8] text-black-clr"
+                    className="signin_btn mt-3 gap-2 bg-[#F8F8F8] text-black-clr"
                     onClick={handleGoogleSignin}
                   >
                     <FcGoogle size={24} />
