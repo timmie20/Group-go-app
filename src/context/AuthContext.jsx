@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { auth } from "../config/firebase";
 import {
   GoogleAuthProvider,
@@ -86,20 +86,14 @@ export const AuthContextProvider = ({ children }) => {
     signInWithPopup(auth, provider);
   };
 
-  const handleLogOut = async () => {
-    if (!user) {
-      return;
+  const handleLogOut = () => {
+    if (user) {
+      signOut(auth);
+      navigate("/");
     } else {
-      try {
-        await signOut(auth);
-        navigate("/");
-      } catch (error) {
-        window.prompt("logout");
-        console.log(error);
-      }
+      return;
     }
   };
-
   return (
     <AuthContext.Provider
       value={{
