@@ -19,7 +19,7 @@ const CreateEvent = () => {
   return (
     <>
       <StepProgress />
-        {mapping[currentStep.page]}    
+      {mapping[currentStep.page]}
     </>
   );
 };

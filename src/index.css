@@ -65,6 +65,7 @@ p {
 }
 
 nav {
+
   @apply sticky z-10 h-fit w-full bg-white tablet:px-[48px] py-[18px];
 }
 

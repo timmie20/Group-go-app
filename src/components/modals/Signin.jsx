@@ -78,7 +78,6 @@ const Signin = () => {
             onClick={(e) => e.stopPropagation()}
             className="signin_container"
           >
-
             <form onSubmit={(event) => sendEmailLink(event, email)}>
               <div>
                 <h2 className="tablet:text-[48px] text-[24px]">groupgo</h2>

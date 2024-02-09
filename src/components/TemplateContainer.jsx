@@ -10,8 +10,8 @@ const TemplateContainer = () => {
   const { user } = useContext(AuthContext);
   return (
     <>
-      {/* {!user && <Signin />} */}
-      <div className="flex flex-wrap gap-[38px]">
+      {!user && <Signin />}
+      <div className="grid grid-cols-3 gap-9">
         {templateData.map((template) => (
           <Template
             key={template.id}
