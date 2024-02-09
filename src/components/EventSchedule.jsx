@@ -33,7 +33,7 @@ const EventSchedule = () => {
               type="date"
               name="start_date"
               id="start_date"
-              className="inputs"
+              className="inputs tablet:max-w-full max-w-[150px]"
             />
           </div>
 
@@ -43,7 +43,7 @@ const EventSchedule = () => {
               type="date"
               name="end_date"
               id="end_date"
-              className="inputs"
+              className="inputs tablet:max-w-full max-w-[150px]"
             />
           </div>
         </div>
@@ -55,7 +55,7 @@ const EventSchedule = () => {
               type="time"
               name="start_time"
               id="start_time"
-              className="inputs"
+              className="inputs tablet:max-w-full max-w-[150px]"
             />
           </div>
 
@@ -65,7 +65,7 @@ const EventSchedule = () => {
               type="time"
               name="end_time"
               id="end_time"
-              className="inputs"
+              className="inputs tablet:max-w-full max-w-[150px]"
             />
           </div>
         </div>

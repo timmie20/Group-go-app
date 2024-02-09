@@ -15,7 +15,7 @@ const PaymentInformation = () => {
             id="bank_name"
             name="bank_name"
             placeholder="GTBank"
-            className="inputs"
+            className="inputs max-w-full"
           />
         </div>
 
@@ -26,7 +26,7 @@ const PaymentInformation = () => {
             id="account_number"
             name="account_number"
             placeholder="account number"
-            className="inputs"
+            className="inputs max-w-full"
           />
         </div>
         <div className="mt-10">
