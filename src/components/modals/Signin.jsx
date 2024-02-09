@@ -78,11 +78,10 @@ const Signin = () => {
             onClick={(e) => e.stopPropagation()}
             className="signin_container"
           >
-            <FiAlertCircle className="absolute -right-24 -top-24 z-0 rotate-12 text-[250px] text-red-200" />
 
             <form onSubmit={(event) => sendEmailLink(event, email)}>
               <div>
-                <h2>groupgo</h2>
+                <h2 className="tablet:text-[48px] text-[24px]">groupgo</h2>
                 <p>Sign in or sign up to create an event</p>
               </div>
               <div className="mt-6 flex flex-col gap-[22px]">
@@ -93,7 +92,7 @@ const Signin = () => {
                     name="email"
                     id="email"
                     value={email}
-                    className="inputs"
+                    className="inputs w-full"
                     onChange={(e) => setEmail(e.target.value)}
                   />
                   {alertMsg && (

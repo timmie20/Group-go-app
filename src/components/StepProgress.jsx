@@ -39,7 +39,8 @@ const StepProgress = () => {
           </div>
         </div>
         <div>
-          <img
+          <img 
+            className="tablet:block hidden"
             src={imageIllustration}
             alt="Three girlfriends drink tea at home and talk image illustration"
           />

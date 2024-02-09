@@ -11,7 +11,7 @@ const TemplateEventForm = () => {
       <form className="event_info_form">
         <div className="space-y-3">
           <p className="font-normal">{selectedTemplate.templateName}</p>
-          <div className="relative">
+          <div className="relative w-full">
             <img
               src={cover}
               alt="a cover image illustration of a resturant"
