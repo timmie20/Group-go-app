@@ -108,14 +108,14 @@ export const AuthContextProvider = ({ children }) => {
 
   const createUserDocument = async (user) => {
     const docRef = doc(db, "users", user.uid)
-    await setDoc(docRef, JSON.parse(JSON.stringify(user)))
-    // const docRef = await addDoc(collection(db, "users"), {
-    //   uid,
-    //   email,
-    //   photoURL,
-    //   displayName,
-    // })
-    console.log("Document written with ID: ", docRef.id);
+    const userObj = {
+      uid: user.uid,
+      email: user.email,
+      photoURL: user.photoURL,
+      displayName: user.displayName,
+    }
+    await setDoc(docRef, userObj)
+    // console.log("Document written with ID: ", docRef.id);
   }
 
   return (
