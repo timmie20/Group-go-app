@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
+import { collection, setDoc, doc } from "firebase/firestore";
 import {
   GoogleAuthProvider,
   isSignInWithEmailLink,
@@ -26,10 +27,18 @@ export const AuthContextProvider = ({ children }) => {
     // URL you want to redirect back to. The domain (www.example.com) for this
     // URL must be in the authorized domains list in the Firebase Console.
     url: "https://groupgo.netlify.app/create",
-    // url: "http://localhost:5173/create",
+    url: "http://localhost:5173/create",
     handleCodeInApp: true,
     // dynamicLinkDomain: "groupgo.netlify.app",
   };
+
+  useEffect(() => {
+    if (user) {
+      createUserDocument(user)
+    } else {
+      console.log("no user doc to create")
+    }
+  }, [user])
 
   const sendEmailLink = async (event, email) => {
     event.preventDefault();
@@ -39,6 +48,7 @@ export const AuthContextProvider = ({ children }) => {
         // The link was successfully sent. Inform the user.
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
+        console.log(user)
         window.localStorage.setItem("emailForSignIn", email);
         setAlertMsg("we have sent you an email with a link to sign in");
         setIsEmailLinkLoading(false);
@@ -66,7 +76,8 @@ export const AuthContextProvider = ({ children }) => {
         }
         signInWithEmailLink(auth, email, window.location.href)
           .then((result) => {
-            // console.log(result.user);
+            // const newUser = result.user
+            // createUserDocument(newUser.uid, newUser.email, newUser.photoURL, newUser.displayName)
             // Clear email from storage
             window.localStorage.removeItem("emailForSignIn");
             navigate("/create");
@@ -94,6 +105,19 @@ export const AuthContextProvider = ({ children }) => {
       return;
     }
   };
+
+  const createUserDocument = async (user) => {
+    const docRef = doc(db, "users", user.uid)
+    await setDoc(docRef, JSON.parse(JSON.stringify(user)))
+    // const docRef = await addDoc(collection(db, "users"), {
+    //   uid,
+    //   email,
+    //   photoURL,
+    //   displayName,
+    // })
+    console.log("Document written with ID: ", docRef.id);
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -111,6 +135,7 @@ export const AuthContextProvider = ({ children }) => {
         handleLogOut,
         errorMsg,
         setErrorMsg,
+        createUserDocument
       }}
     >
       {children}

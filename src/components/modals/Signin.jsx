@@ -24,6 +24,7 @@ const Signin = () => {
     setIsEmailLinkLoading,
     errorMsg,
     setErrorMsg,
+    createUserDocument,
   } = useContext(AuthContext);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const Signin = () => {
     try {
       await signInWithGoogle();
       if (user) {
+        // createUserDocument(user.uid, user.email, user.photoURL, user.displayName)
         navigate("/create");
       } else {
         console.log("unable to sign in");
