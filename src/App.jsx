@@ -5,8 +5,7 @@ import { AppProvider } from "./context/AppContext";
 import Home from "./Pages/Home";
 import CreateEvent from "./Pages/CreateEvent";
 import { AuthContextProvider } from "./context/AuthContext";
-import ProtectedRoute from "./utils/ProtectedRoute";
-import Signin from "./components/modals/Signin";
+import FormContext from "./context/FormContext";
 
 const App = () => {
   return (
@@ -14,12 +13,14 @@ const App = () => {
       <AuthContextProvider>
         <AppProvider>
           <AppLayout>
-            <Routes>
-              <Route path="/">
-                <Route index element={<Home />} />
-                <Route path="/create" element={<CreateEvent />} />
-              </Route>
-            </Routes>
+            <FormContext>
+              <Routes>
+                <Route path="/">
+                  <Route index element={<Home />} />
+                  <Route path="/create" element={<CreateEvent />} />
+                </Route>
+              </Routes>
+            </FormContext>
           </AppLayout>
         </AppProvider>
       </AuthContextProvider>

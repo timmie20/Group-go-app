@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import PrimaryButton from "./PrimaryButton";
 
 const SendEmail = () => {
   const [email, setEmail] = useState("");
@@ -91,7 +90,7 @@ const SendEmail = () => {
           </div>
         </div>
         <div className="mt-5">
-          <PrimaryButton>Send event invite</PrimaryButton>
+          {/* <PrimaryButton>Send event invite</PrimaryButton> */}
         </div>
       </form>
     </>

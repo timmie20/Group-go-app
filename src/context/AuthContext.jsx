@@ -26,19 +26,18 @@ export const AuthContextProvider = ({ children }) => {
   const actionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for this
     // URL must be in the authorized domains list in the Firebase Console.
-    url: "https://groupgo.netlify.app/create",
+    // url: "https://groupgo.netlify.app/create",
     url: "http://localhost:5173/create",
     handleCodeInApp: true,
-    // dynamicLinkDomain: "groupgo.netlify.app",
   };
 
   useEffect(() => {
     if (user) {
-      createUserDocument(user)
+      createUserDocument(user);
     } else {
-      console.log("no user doc to create")
+      console.log("no user doc to create");
     }
-  }, [user])
+  }, [user]);
 
   const sendEmailLink = async (event, email) => {
     event.preventDefault();
@@ -48,7 +47,7 @@ export const AuthContextProvider = ({ children }) => {
         // The link was successfully sent. Inform the user.
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
-        console.log(user)
+        console.log(user);
         window.localStorage.setItem("emailForSignIn", email);
         setAlertMsg("we have sent you an email with a link to sign in");
         setIsEmailLinkLoading(false);
@@ -107,16 +106,16 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const createUserDocument = async (user) => {
-    const docRef = doc(db, "users", user.uid)
+    const docRef = doc(db, "users", user.uid);
     const userObj = {
       uid: user.uid,
       email: user.email,
       photoURL: user.photoURL,
       displayName: user.displayName,
-    }
-    await setDoc(docRef, userObj)
+    };
+    await setDoc(docRef, userObj);
     // console.log("Document written with ID: ", docRef.id);
-  }
+  };
 
   return (
     <AuthContext.Provider
@@ -135,7 +134,7 @@ export const AuthContextProvider = ({ children }) => {
         handleLogOut,
         errorMsg,
         setErrorMsg,
-        createUserDocument
+        createUserDocument,
       }}
     >
       {children}

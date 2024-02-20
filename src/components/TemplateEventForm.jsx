@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import cover from "../assets/images/resturant image.jpeg";
 import EventSchedule from "./EventSchedule";
 import { AppContext } from "../context/AppContext";
+import InputField from "./InputField";
+import { Field, Form, useFormikContext } from "formik";
 
 const TemplateEventForm = () => {
   const { selectedTemplate, setCurrentStep, stepData } = useContext(AppContext);
 
   return (
     <>
-      <form className="event_info_form">
-        <div className="space-y-3">
+      <Form className="event_info_form">
+        <div className="mb-12 space-y-3">
           <p className="font-normal">{selectedTemplate.templateName}</p>
           <div className="relative w-full">
             <img
@@ -48,44 +50,53 @@ const TemplateEventForm = () => {
           </div>
         </div>
 
-        <div className="email_field_div">
-          <label htmlFor="email">Email address</label>
-          <input
-            type="email"
-            name="email"
+        <div className="space-y-7">
+          <Field
+            id="name"
+            type="text"
+            label="Creator name"
+            name="eventInfo.creatorName"
+            component={InputField}
+            placeholder="name"
+          />
+          <Field
             id="email"
+            type="email"
+            label="Email address"
+            name="eventInfo.creatorEmail"
+            component={InputField}
             placeholder="Your email address"
-            className="inputs"
+          />
+          <Field
+            id="link"
+            type="text"
+            label="Social link"
+            name="eventInfo.socialLink"
+            component={InputField}
+            placeholder="https://instagram.com/username (X, instagram, tiktok..)"
+          />
+          <h4>Tell us about your event</h4>
+          <Field
+            id="description"
+            type="textarea"
+            name="eventInfo.eventDesc"
+            label="Event Description"
+            component={InputField}
+            className="event_description_textarea"
+            placeholder="Fan Hangout..."
           />
         </div>
 
-        <div>
-          <h4>Tell us about your event</h4>
-          <div className="field_set_div">
-            <label htmlFor="description"> Event Description</label>
-            <textarea
-              name="description"
-              id="description"
-              cols="50"
-              rows="4"
-              placeholder="Fan Hangout..."
-              className="event_description_textarea "
-            ></textarea>
-          </div>
-        </div>
-
-        <div>
+        <div className="space-y-7">
           <h4>Where are you having the event?</h4>
-          <div className="field_set_div">
-            <label htmlFor="location">Location</label>
-            <input
-              type="text"
-              name="location"
-              id="location"
-              placeholder="Where are you having the event?"
-              className="inputs"
-            />
-          </div>
+          <Field
+            id="location"
+            type="text"
+            label="Location"
+            name="eventInfo.eventLocation"
+            component={InputField}
+            placeholder="Where are you having the event?"
+          />
         </div>
 
         <div>
@@ -93,70 +104,64 @@ const TemplateEventForm = () => {
           <EventSchedule />
         </div>
 
-        <div className="flex flex-col">
+        <div className="space-y-6">
           <h4>Who’s attending the event?</h4>
-          <div className="space-y-6">
-            <div className="field_set_div">
-              <label htmlFor="min_num_participant">
-                Minimum number of participants
-              </label>
-              <input
-                type="number"
-                id="min_num_participant"
-                name="min_num_participant"
-                placeholder="Minimum"
-                className="inputs"
-              />
-            </div>
+          <Field
+            id="min_num_participant"
+            type="number"
+            label="Minimum number of participants"
+            name="eventInfo.minNumOfParticipant"
+            component={InputField}
+            placeholder="Minimum"
+          />
 
-            <div className="field_set_div">
-              <label htmlFor="max_num_participant">
-                Maximum number of participants
-              </label>
-              <input
-                type="number"
-                id="max_num_participant"
-                name="max_num_participant"
-                placeholder="Maximum"
-                className="inputs"
-              />
-            </div>
+          <Field
+            id="max_num_participant"
+            type="number"
+            label="Maximum number of participants"
+            name="eventInfo.maxNumOfParticipant"
+            component={InputField}
+            placeholder="Maximum"
+          />
 
-            <div className="field_set_div">
-              <label htmlFor="gender">Participants gender</label>
-              <select name="gender" id="gender">
-                <option value="">select an option</option>
-                <option value="males">All male</option>
-                <option value="females">All female</option>
-                <option value="both genders">Both male and female</option>
-              </select>
-            </div>
+          <div className="field_set_div">
+            <label htmlFor="gender">Participants gender</label>
+            <Field
+              name="eventInfo.typeOfParticipants"
+              id="gender"
+              component="select"
+              className="inputs"
+            >
+              <option value="">select an option</option>
+              <option value="males">All male</option>
+              <option value="females">All female</option>
+              <option value="both genders">Both male and female</option>
+            </Field>
           </div>
         </div>
 
-        <div>
+        <div className="space-y-6">
           <h4>How much is the event</h4>
-          <div className="field_set_div">
-            <label htmlFor="amount">Amount per person</label>
-            <input
-              type="text"
-              id="amount"
-              name="amount"
-              placeholder="0.00 (NGN)"
-              className="inputs"
-            />
-          </div>
+          <Field
+            id="amount"
+            type="text"
+            label="Amount per person"
+            name="eventInfo.amountPerParticipant"
+            component={InputField}
+            placeholder="0.00 (NGN)"
+          />
         </div>
 
         <div className="mt-12">
           <button
             onClick={() => setCurrentStep(stepData[2])}
             className="primary_button block"
+            type="button"
           >
             Continue
           </button>
         </div>
-      </form>
+      </Form>
     </>
   );
 };

@@ -14,7 +14,7 @@ html {
 body {
   font-family: "Excon", sans-serif;
   overscroll-behavior: auto;
-  @apply bg-[#f0f0f0]
+  @apply bg-[#f0f0f0];
 }
 
 h1 {
@@ -25,7 +25,7 @@ h1 {
 h2 {
   /* font-size: 48px; */
   font-weight: 500;
-  @apply tablet:text-[48px] text-[24px]
+  @apply text-[24px] tablet:text-[48px];
 }
 
 h3 {
@@ -47,7 +47,7 @@ p {
   /* font-size: 18px; */
   color: #060811b0;
   font-weight: 300;
-  @apply tablet:text-[18px] text-[16px]
+  @apply text-[16px] tablet:text-[18px];
 }
 
 /*buttons classes*/
@@ -57,7 +57,7 @@ p {
 }
 
 .app_body {
-  @apply relative mx-auto container w-[90%] mb-9 mt-20 flex items-start tablet:flex-row flex-col gap-[56px] laptop:gap-[127px];
+  @apply container relative mx-auto mb-9 mt-20 flex flex-col items-start gap-[56px] tablet:flex-row laptop:gap-[127px];
 }
 
 .primary_button {
@@ -65,16 +65,15 @@ p {
 }
 
 nav {
-
-  @apply sticky z-10 h-fit w-full bg-white tablet:px-[48px] py-[18px];
+  @apply sticky z-10 h-fit w-full bg-white py-[18px] tablet:px-[48px];
 }
 
 .nav_items {
-  @apply flex items-center container w-[90%] mx-auto justify-between;
+  @apply container mx-auto flex w-[90%] items-center justify-between;
 }
 
 .nav_items ul {
-  @apply hidden tablet:flex items-center gap-8 text-[15px] font-normal;
+  @apply hidden items-center gap-8 text-[15px] font-normal tablet:flex;
 }
 
 ul li {
@@ -82,7 +81,7 @@ ul li {
 }
 
 .step_progress_container {
-  @apply tablet:sticky container mx-auto w-[90%] left-0 top-10 flex tablet:max-w-[376px] flex-col items-center gap-12 rounded-[10px] tablet:bg-white tablet:px-7 tablet:pt-8;
+  @apply container left-0 top-10 mx-auto flex w-[90%] flex-col items-center gap-12 rounded-[10px] tablet:sticky tablet:max-w-[376px] tablet:bg-white tablet:px-7 tablet:pt-8;
 }
 
 .step_item {
@@ -101,16 +100,16 @@ ul li {
   @apply mx-1 my-2 flex cursor-pointer items-center justify-center rounded-lg bg-[#06081114] p-2;
 }
 
-.event_info_form {
-  @apply max-w-[479px] w-full;
-}
+/* .event_info_form {
+  @apply max-w-[479px];
+} */
 
-.event_info_form  {
-  @apply max-w-full;
+.event_info_form {
+  @apply mx-auto max-w-full;
 }
 
 .inputs {
-  @apply  rounded-[15px] border-[1px] border-[#06081121] bg-white px-6 py-[10px] font-light text-black-clr focus:outline-none;
+  @apply w-full rounded-[15px] border-[1px] border-[#06081121] bg-white px-6 py-[10px] font-light text-black-clr focus:outline-none;
 }
 
 .event_info_form label {
@@ -118,35 +117,27 @@ ul li {
 }
 
 .event_info_form h4 {
-  @apply my-7 text-2xl font-normal text-black-clr;
-}
-
-.event_info_form .email_field_div {
-  @apply mt-14 flex w-full flex-col gap-2;
+  @apply mt-6 text-2xl font-normal text-black-clr;
 }
 
 .field_set_div {
   @apply flex w-full flex-col gap-2;
 }
 
-.field_set_div select {
-  @apply w-full rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr;
-}
-
-.event_info_form .event_description_textarea {
+.event_description_textarea {
   @apply w-full resize-none rounded-[15px] border-[1px] bg-white px-6 py-[10px] font-light text-black-clr focus:outline-none;
 }
 
 .event_schedule_container {
-  @apply mt-5 flex flex-col gap-4;
+  @apply space-y-6;
 }
 
 .select_schedule_container {
-  @apply flex flex-wrap max-w-full items-center justify-between rounded-[15px] bg-[#F4F4F4] p-2;
+  @apply mt-6 flex max-w-full flex-wrap items-center justify-between rounded-[15px] bg-[#F4F4F4] p-2;
 }
 
 .select_schedule_container .schedule_period {
-  @apply cursor-pointer w-[120px] text-center rounded-[10px] border-[1px] border-[#F0F0F0] px-2 py-2 text-base font-normal text-black-clr;
+  @apply w-[120px] cursor-pointer rounded-[10px] border-[1px] border-[#F0F0F0] px-2 py-2 text-center text-base font-normal text-black-clr;
 }
 
 .selected_schedule_period {
@@ -158,7 +149,7 @@ ul li {
 }
 
 .payment_info_container {
-  @apply flex max-w-[479px] flex-col gap-[22px];
+  @apply flex flex-col gap-[22px];
 }
 
 .payment_info_container label {
@@ -202,5 +193,5 @@ ul li {
 }
 
 .signin_container {
-  @apply relative w-full max-w-lg cursor-default overflow-hidden rounded-[20px] bg-white px-4 tablet:px-14 py-16 shadow-xl;
+  @apply relative w-full max-w-lg cursor-default overflow-hidden rounded-[20px] bg-white px-4 py-16 shadow-xl tablet:px-14;
 }

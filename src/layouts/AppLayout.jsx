@@ -1,15 +1,12 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import StepProgress from "../components/StepProgress";
 
 const AppLayout = ({ children }) => {
   return (
     <>
       <div className="app_container">
         <Navbar />
-        <main className="app_body">
-          {children}
-        </main>
+        <main className="app_body">{children}</main>
       </div>
     </>
   );

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import InputField from "./InputField";
+import { Field } from "formik";
 
 const EventSchedule = () => {
   const [current, setCurrent] = useState("Single event");
@@ -27,47 +29,39 @@ const EventSchedule = () => {
         </div>
 
         <div className="event_schedule_duration">
-          <div className="field_set_div">
-            <label htmlFor="start_date">Start Date</label>
-            <input
-              type="date"
-              name="start_date"
-              id="start_date"
-              className="inputs tablet:max-w-full max-w-[150px]"
-            />
-          </div>
+          <Field
+            id="start_date"
+            type="date"
+            label="Start Date"
+            name="eventInfo.startDate"
+            component={InputField}
+          />
 
-          <div className="field_set_div">
-            <label htmlFor="end_date">End Date</label>
-            <input
-              type="date"
-              name="end_date"
-              id="end_date"
-              className="inputs tablet:max-w-full max-w-[150px]"
-            />
-          </div>
+          <Field
+            id="end_date"
+            type="date"
+            label="End Date"
+            name="eventInfo.endDate"
+            component={InputField}
+          />
         </div>
 
         <div className="event_schedule_duration">
-          <div className="field_set_div">
-            <label htmlFor="start_time">Start Time</label>
-            <input
-              type="time"
-              name="start_time"
-              id="start_time"
-              className="inputs tablet:max-w-full max-w-[150px]"
-            />
-          </div>
+          <Field
+            id="start_time"
+            type="time"
+            label="Start Time"
+            name="eventInfo.startTime"
+            component={InputField}
+          />
 
-          <div className="field_set_div">
-            <label htmlFor="end_time">End Time</label>
-            <input
-              type="time"
-              name="end_time"
-              id="end_time"
-              className="inputs tablet:max-w-full max-w-[150px]"
-            />
-          </div>
+          <Field
+            id="end_time"
+            type="time"
+            label="End Time"
+            name="eventInfo.endTime"
+            component={InputField}
+          />
         </div>
       </div>
     </>
