@@ -19,6 +19,8 @@ const PaymentInformation = () => {
     submitForm,
   });
 
+  const paymentInfo = values.paymentInfo;
+
   return (
     <>
       <form className="payment_info_container" onSubmit={handleSubmit}>
