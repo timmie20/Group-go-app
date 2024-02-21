@@ -1,47 +1,32 @@
-import React, { useState } from "react";
-import { Formik } from "formik";
+import React, { createContext, useContext, useState } from "react";
+import { AuthContext } from "./AuthContext";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "../config/firebase";
+import { AppContext } from "./AppContext";
 
-const FormContext = ({ children }) => {
+export const FormContext = createContext(null);
+
+export const FormContextProvider = ({ children }) => {
+  const { setCurrentStep, stepData } = useContext(AppContext);
   const [eventData, setEventData] = useState({});
+  const { user } = useContext(AuthContext);
 
-  const handleEventCreation = (values) => {
-    setEventData(values);
-    console.log(eventData);
+  const handleEventCreation = async () => {
+    const dofRef = doc(db, "event", user.uid);
+    try {
+      await setDoc(dofRef, { eventData: eventData });
+      setCurrentStep(stepData[3]);
+      console.log("event data added");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
   return (
-    <>
-      <Formik
-        initialValues={{
-          uid: "",
-          template: { templateType: "" },
-          eventInfo: {
-            creatorName: "",
-            creatorEmail: "",
-            socialLink: "",
-            eventDesc: "",
-            eventLocation: "",
-            startDate: "",
-            endDate: "",
-            startTime: "",
-            endTime: "",
-            maxNumOfParticipant: 0,
-            minNumOfParticipant: 0,
-            typeOfParticipants: "",
-            amountPerParticipant: "",
-          },
-          paymentInfo: {
-            bankName: "",
-            accountNum: "",
-          },
-        }}
-        onSubmit={(values) => {
-          handleEventCreation(values);
-        }}
-      >
-        {children}
-      </Formik>
-    </>
+    <FormContext.Provider
+      value={{ eventData, setEventData, handleEventCreation }}
+    >
+      {children}
+    </FormContext.Provider>
   );
 };
-
-export default FormContext;

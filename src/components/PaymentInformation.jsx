@@ -1,41 +1,58 @@
-import React, { useContext } from "react";
-import { AppContext } from "../context/AppContext";
-import { Field, Form } from "formik";
+import React, { useCallback, useContext, useEffect } from "react";
 import InputField from "./InputField";
+import { useFormik } from "formik";
+import { FormContext } from "../context/FormContext";
 
 const PaymentInformation = () => {
-  const { setCurrentStep, stepData } = useContext(AppContext);
+  const { eventData, setEventData, handleEventCreation } =
+    useContext(FormContext);
+
+  const submitForm = () => {
+    setEventData({ ...eventData, paymentInfo });
+    handleEventCreation();
+  };
+
+  const { values, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      paymentInfo: { bankName: "", accountNum: "" },
+    },
+    submitForm,
+  });
 
   return (
     <>
-      <Form className="payment_info_container">
+      <form className="payment_info_container" onSubmit={handleSubmit}>
         <h4 className="font-normal">How would you like to get paid?</h4>
-        <Field
+
+        <InputField
           id="bank_name"
           type="text"
           label="Name of bank"
           name="paymentInfo.bankName"
-          component={InputField}
           placeholder="GT bank..."
+          value={values.paymentInfo.bankName}
+          onChange={handleChange}
         />
 
-        <Field
+        <InputField
           id="acc_num"
           type="text"
           label="Account number"
           name="paymentInfo.accountNum"
-          component={InputField}
+          value={values.paymentInfo.accountNum}
           placeholder="account number"
+          onChange={handleChange}
         />
         <div className="mt-10">
           <button
-            onClick={() => setCurrentStep(stepData[3])}
+            type="button"
+            onClick={submitForm}
             className="primary_button block"
           >
             Continue
           </button>
         </div>
-      </Form>
+      </form>
     </>
   );
 };

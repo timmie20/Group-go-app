@@ -1,16 +1,50 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import cover from "../assets/images/resturant image.jpeg";
 import EventSchedule from "./EventSchedule";
 import { AppContext } from "../context/AppContext";
 import InputField from "./InputField";
-import { Field, Form, useFormikContext } from "formik";
+import { AuthContext } from "../context/AuthContext";
+import { useFormik } from "formik";
+import { FormContext } from "../context/FormContext";
 
 const TemplateEventForm = () => {
   const { selectedTemplate, setCurrentStep, stepData } = useContext(AppContext);
+  const { eventData, setEventData } = useContext(FormContext);
+  const { user } = useContext(AuthContext);
+
+  const handleRouteNext = (e) => {
+    e.preventDefault();
+    setEventData(values);
+    setCurrentStep(stepData[2]);
+  };
+  console.log(eventData);
+
+  const { values, handleChange } = useFormik({
+    initialValues: {
+      uid: user?.uid,
+      eventInfo: {
+        eventType: selectedTemplate?.templateName,
+        creatorName: "",
+        creatorEmail: "",
+        socialLink: "",
+        eventDesc: "",
+        eventLocation: "",
+        startDate: "",
+        endDate: "",
+        startTime: "",
+        endTime: "",
+        maxNumOfParticipant: 0,
+        minNumOfParticipant: 0,
+        typeOfParticipants: "",
+        amountPerParticipant: "",
+      },
+    },
+    handleRouteNext,
+  });
 
   return (
     <>
-      <Form className="event_info_form">
+      <form className="event_info_form">
         <div className="mb-12 space-y-3">
           <p className="font-normal">{selectedTemplate.templateName}</p>
           <div className="relative w-full">
@@ -51,117 +85,126 @@ const TemplateEventForm = () => {
         </div>
 
         <div className="space-y-7">
-          <Field
+          <InputField
             id="name"
             type="text"
             label="Creator name"
             name="eventInfo.creatorName"
-            component={InputField}
             placeholder="name"
+            value={values.eventInfo.creatorName}
+            onChange={handleChange}
           />
-          <Field
+          <InputField
             id="email"
             type="email"
             label="Email address"
             name="eventInfo.creatorEmail"
-            component={InputField}
             placeholder="Your email address"
+            value={values.eventInfo.creatorEmail}
+            onChange={handleChange}
           />
-          <Field
+          <InputField
             id="link"
             type="text"
             label="Social link"
             name="eventInfo.socialLink"
-            component={InputField}
             placeholder="https://instagram.com/username (X, instagram, tiktok..)"
+            value={values.eventInfo.socialLink}
+            onChange={handleChange}
           />
           <h4>Tell us about your event</h4>
-          <Field
+          <InputField
             id="description"
             type="textarea"
             name="eventInfo.eventDesc"
             label="Event Description"
-            component={InputField}
-            className="event_description_textarea"
             placeholder="Fan Hangout..."
+            value={values.eventInfo.eventDesc}
+            onChange={handleChange}
           />
         </div>
 
         <div className="space-y-7">
           <h4>Where are you having the event?</h4>
-          <Field
+          <InputField
             id="location"
             type="text"
             label="Location"
             name="eventInfo.eventLocation"
-            component={InputField}
             placeholder="Where are you having the event?"
+            value={values.eventInfo.eventLocation}
+            onChange={handleChange}
           />
         </div>
 
         <div>
           <h4>When is the event?</h4>
-          <EventSchedule />
+          <EventSchedule values={values} handleChange={handleChange} />
         </div>
 
         <div className="space-y-6">
           <h4>Who’s attending the event?</h4>
-          <Field
+          <InputField
             id="min_num_participant"
             type="number"
             label="Minimum number of participants"
             name="eventInfo.minNumOfParticipant"
-            component={InputField}
             placeholder="Minimum"
+            value={values.eventInfo.minNumOfParticipant}
+            onChange={handleChange}
           />
 
-          <Field
+          <InputField
             id="max_num_participant"
             type="number"
             label="Maximum number of participants"
             name="eventInfo.maxNumOfParticipant"
-            component={InputField}
             placeholder="Maximum"
+            value={values.eventInfo.maxNumOfParticipant}
+            onChange={handleChange}
           />
 
           <div className="field_set_div">
             <label htmlFor="gender">Participants gender</label>
-            <Field
+            <select
               name="eventInfo.typeOfParticipants"
               id="gender"
-              component="select"
               className="inputs"
+              type="select"
+              value={values.eventInfo.typeOfParticipants}
+              onChange={handleChange}
             >
               <option value="">select an option</option>
               <option value="males">All male</option>
               <option value="females">All female</option>
               <option value="both genders">Both male and female</option>
-            </Field>
+            </select>
           </div>
         </div>
 
         <div className="space-y-6">
           <h4>How much is the event</h4>
-          <Field
+          <InputField
             id="amount"
             type="text"
             label="Amount per person"
             name="eventInfo.amountPerParticipant"
-            component={InputField}
             placeholder="0.00 (NGN)"
+            value={values.eventInfo.amountPerParticipant}
+            onChange={handleChange}
           />
         </div>
 
         <div className="mt-12">
           <button
-            onClick={() => setCurrentStep(stepData[2])}
+            onClick={handleRouteNext}
             className="primary_button block"
             type="button"
           >
             Continue
           </button>
         </div>
-      </Form>
+      </form>
     </>
   );
 };

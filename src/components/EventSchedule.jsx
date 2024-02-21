@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
-import { Field } from "formik";
 
-const EventSchedule = () => {
+const EventSchedule = ({ values, handleChange }) => {
   const [current, setCurrent] = useState("Single event");
 
   const schedules = ["Single event", "Montly", "Weekly", "Yearly"];
 
-  const handleChange = (e) => {
+  const handleScheduleChange = (e) => {
     setCurrent(e.target.innerText);
   };
 
@@ -21,7 +20,7 @@ const EventSchedule = () => {
               className={`schedule_period ${
                 current === schedule ? "selected_schedule_period" : ""
               }`}
-              onClick={handleChange}
+              onClick={handleScheduleChange}
             >
               {schedule}
             </span>
@@ -29,38 +28,42 @@ const EventSchedule = () => {
         </div>
 
         <div className="event_schedule_duration">
-          <Field
+          <InputField
             id="start_date"
             type="date"
             label="Start Date"
             name="eventInfo.startDate"
-            component={InputField}
+            value={values.eventInfo.startDate}
+            onChange={handleChange}
           />
 
-          <Field
+          <InputField
             id="end_date"
             type="date"
             label="End Date"
             name="eventInfo.endDate"
-            component={InputField}
+            value={values.eventInfo.endDate}
+            onChange={handleChange}
           />
         </div>
 
         <div className="event_schedule_duration">
-          <Field
+          <InputField
             id="start_time"
             type="time"
             label="Start Time"
             name="eventInfo.startTime"
-            component={InputField}
+            value={values.eventInfo.startTime}
+            onChange={handleChange}
           />
 
-          <Field
+          <InputField
             id="end_time"
             type="time"
             label="End Time"
             name="eventInfo.endTime"
-            component={InputField}
+            value={values.eventInfo.endTime}
+            onChange={handleChange}
           />
         </div>
       </div>

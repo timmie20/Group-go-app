@@ -1,25 +1,38 @@
 import React from "react";
 
-const InputField = ({ label, field, id, type, placeholder, ...props }) => {
+const InputField = ({
+  name,
+  label,
+  id,
+  type,
+  placeholder,
+  value,
+  onChange,
+}) => {
   return (
     <>
       <div className="field_set_div">
         {label && <label htmlFor={id}>{label}</label>}
         {type === "textarea" ? (
           <textarea
-            {...field}
             cols="50"
             rows="4"
+            className="event_description_textarea"
+            name={name}
             placeholder={placeholder}
-            {...props}
+            id={id}
+            value={value}
+            onChange={onChange}
           ></textarea>
         ) : (
           <input
+            name={name}
             className="inputs"
-            {...field}
             type={type}
             id={id}
             placeholder={placeholder}
+            value={value}
+            onChange={onChange}
           />
         )}
       </div>

@@ -5,23 +5,23 @@ import { AppProvider } from "./context/AppContext";
 import Home from "./Pages/Home";
 import CreateEvent from "./Pages/CreateEvent";
 import { AuthContextProvider } from "./context/AuthContext";
-import FormContext from "./context/FormContext";
+import { FormContextProvider } from "./context/FormContext";
 
 const App = () => {
   return (
     <>
       <AuthContextProvider>
         <AppProvider>
-          <AppLayout>
-            <FormContext>
+          <FormContextProvider>
+            <AppLayout>
               <Routes>
                 <Route path="/">
                   <Route index element={<Home />} />
                   <Route path="/create" element={<CreateEvent />} />
                 </Route>
               </Routes>
-            </FormContext>
-          </AppLayout>
+            </AppLayout>
+          </FormContextProvider>
         </AppProvider>
       </AuthContextProvider>
     </>
