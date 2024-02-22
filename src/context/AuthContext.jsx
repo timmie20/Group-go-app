@@ -114,7 +114,6 @@ export const AuthContextProvider = ({ children }) => {
       displayName: user.displayName,
     };
     await setDoc(docRef, userObj);
-    // console.log("Document written with ID: ", docRef.id);
   };
 
   return (

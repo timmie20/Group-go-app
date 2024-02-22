@@ -4,43 +4,22 @@ import EventSchedule from "./EventSchedule";
 import { AppContext } from "../context/AppContext";
 import InputField from "./InputField";
 import { AuthContext } from "../context/AuthContext";
-import { useFormik } from "formik";
 import { FormContext } from "../context/FormContext";
 
 const TemplateEventForm = () => {
   const { selectedTemplate, setCurrentStep, stepData } = useContext(AppContext);
-  const { eventData, setEventData } = useContext(FormContext);
+  const { eventData, setEventData, handleChangeForEventInfo } =
+    useContext(FormContext);
+  const { eventInfo } = eventData;
   const { user } = useContext(AuthContext);
 
-  const handleRouteNext = (e) => {
-    e.preventDefault();
-    setEventData(values);
-    setCurrentStep(stepData[2]);
-  };
-  console.log(eventData);
-
-  const { values, handleChange } = useFormik({
-    initialValues: {
+  useEffect(() => {
+    setEventData({
+      ...eventData,
       uid: user?.uid,
-      eventInfo: {
-        eventType: selectedTemplate?.templateName,
-        creatorName: "",
-        creatorEmail: "",
-        socialLink: "",
-        eventDesc: "",
-        eventLocation: "",
-        startDate: "",
-        endDate: "",
-        startTime: "",
-        endTime: "",
-        maxNumOfParticipant: 0,
-        minNumOfParticipant: 0,
-        typeOfParticipants: "",
-        amountPerParticipant: "",
-      },
-    },
-    handleRouteNext,
-  });
+      eventType: selectedTemplate.templateName,
+    });
+  }, []);
 
   return (
     <>
@@ -89,38 +68,39 @@ const TemplateEventForm = () => {
             id="name"
             type="text"
             label="Creator name"
-            name="eventInfo.creatorName"
+            name="creatorName"
             placeholder="name"
-            value={values.eventInfo.creatorName}
-            onChange={handleChange}
+            value={eventInfo.creatorName}
+            onChange={handleChangeForEventInfo}
           />
+
           <InputField
             id="email"
             type="email"
             label="Email address"
-            name="eventInfo.creatorEmail"
+            name="creatorEmail"
             placeholder="Your email address"
-            value={values.eventInfo.creatorEmail}
-            onChange={handleChange}
+            value={eventInfo.creatorEmail}
+            onChange={handleChangeForEventInfo}
           />
           <InputField
             id="link"
             type="text"
             label="Social link"
-            name="eventInfo.socialLink"
+            name="socialLink"
             placeholder="https://instagram.com/username (X, instagram, tiktok..)"
-            value={values.eventInfo.socialLink}
-            onChange={handleChange}
+            value={eventInfo.socialLink}
+            onChange={handleChangeForEventInfo}
           />
           <h4>Tell us about your event</h4>
           <InputField
             id="description"
             type="textarea"
-            name="eventInfo.eventDesc"
+            name="eventDesc"
             label="Event Description"
             placeholder="Fan Hangout..."
-            value={values.eventInfo.eventDesc}
-            onChange={handleChange}
+            value={eventInfo.eventDesc}
+            onChange={handleChangeForEventInfo}
           />
         </div>
 
@@ -130,16 +110,19 @@ const TemplateEventForm = () => {
             id="location"
             type="text"
             label="Location"
-            name="eventInfo.eventLocation"
+            name="eventLocation"
             placeholder="Where are you having the event?"
-            value={values.eventInfo.eventLocation}
-            onChange={handleChange}
+            value={eventInfo.eventLocation}
+            onChange={handleChangeForEventInfo}
           />
         </div>
 
         <div>
           <h4>When is the event?</h4>
-          <EventSchedule values={values} handleChange={handleChange} />
+          <EventSchedule
+            eventInfo={eventInfo}
+            handleChangeForEventInfo={handleChangeForEventInfo}
+          />
         </div>
 
         <div className="space-y-6">
@@ -148,31 +131,31 @@ const TemplateEventForm = () => {
             id="min_num_participant"
             type="number"
             label="Minimum number of participants"
-            name="eventInfo.minNumOfParticipant"
+            name="minNumOfParticipant"
             placeholder="Minimum"
-            value={values.eventInfo.minNumOfParticipant}
-            onChange={handleChange}
+            value={eventInfo.minNumOfParticipant}
+            onChange={handleChangeForEventInfo}
           />
 
           <InputField
             id="max_num_participant"
             type="number"
             label="Maximum number of participants"
-            name="eventInfo.maxNumOfParticipant"
+            name="maxNumOfParticipant"
             placeholder="Maximum"
-            value={values.eventInfo.maxNumOfParticipant}
-            onChange={handleChange}
+            value={eventInfo.maxNumOfParticipant}
+            onChange={handleChangeForEventInfo}
           />
 
           <div className="field_set_div">
             <label htmlFor="gender">Participants gender</label>
             <select
-              name="eventInfo.typeOfParticipants"
+              name="typeOfParticipants"
               id="gender"
               className="inputs"
               type="select"
-              value={values.eventInfo.typeOfParticipants}
-              onChange={handleChange}
+              value={eventInfo.typeOfParticipants}
+              onChange={handleChangeForEventInfo}
             >
               <option value="">select an option</option>
               <option value="males">All male</option>
@@ -188,16 +171,16 @@ const TemplateEventForm = () => {
             id="amount"
             type="text"
             label="Amount per person"
-            name="eventInfo.amountPerParticipant"
+            name="amountPerParticipant"
             placeholder="0.00 (NGN)"
-            value={values.eventInfo.amountPerParticipant}
-            onChange={handleChange}
+            value={eventInfo.amountPerParticipant}
+            onChange={handleChangeForEventInfo}
           />
         </div>
 
         <div className="mt-12">
           <button
-            onClick={handleRouteNext}
+            onClick={() => setCurrentStep(stepData[2])}
             className="primary_button block"
             type="button"
           >

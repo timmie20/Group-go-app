@@ -8,8 +8,47 @@ export const FormContext = createContext(null);
 
 export const FormContextProvider = ({ children }) => {
   const { setCurrentStep, stepData } = useContext(AppContext);
-  const [eventData, setEventData] = useState({});
   const { user } = useContext(AuthContext);
+
+  const [eventData, setEventData] = useState({
+    uid: "",
+    eventType: "",
+    eventInfo: {
+      creatorName: "",
+      creatorEmail: "",
+      socialLink: "",
+      eventDesc: "",
+      eventLocation: "",
+      startDate: "",
+      endDate: "",
+      startTime: "",
+      endTime: "",
+      maxNumOfParticipant: 0,
+      minNumOfParticipant: 2,
+      typeOfParticipants: "",
+      amountPerParticipant: "",
+    },
+    paymentInfo: {
+      bankName: "",
+      accountNum: "",
+    },
+  });
+
+  const handleChangeForEventInfo = (e) => {
+    const { name, value } = e.target;
+    setEventData({
+      ...eventData,
+      eventInfo: { ...eventData.eventInfo, [name]: value },
+    });
+  };
+
+  const handleChangeForPaymentInfo = (e) => {
+    const { name, value } = e.target;
+    setEventData({
+      ...eventData,
+      paymentInfoInfo: { ...eventData.paymentInfo, [name]: value },
+    });
+  };
 
   const handleEventCreation = async () => {
     const dofRef = doc(db, "event", user.uid);
@@ -24,7 +63,13 @@ export const FormContextProvider = ({ children }) => {
 
   return (
     <FormContext.Provider
-      value={{ eventData, setEventData, handleEventCreation }}
+      value={{
+        eventData,
+        setEventData,
+        handleChangeForEventInfo,
+        handleChangeForPaymentInfo,
+        handleEventCreation,
+      }}
     >
       {children}
     </FormContext.Provider>
