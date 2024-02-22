@@ -1,53 +1,45 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import InputField from "./InputField";
-import { useFormik } from "formik";
 import { FormContext } from "../context/FormContext";
 
 const PaymentInformation = () => {
-  const { eventData, setEventData, handleEventCreation } =
+  const { eventData, handleChangeForPaymentInfo, handleEventCreation } =
     useContext(FormContext);
 
-  const submitForm = () => {
-    setEventData({ ...eventData, paymentInfo });
+  const { paymentInfo } = eventData;
+
+  const submitForm = (e) => {
+    e.preventDefault();
     handleEventCreation();
   };
 
-  const { values, handleChange, handleSubmit } = useFormik({
-    initialValues: {
-      paymentInfo: { bankName: "", accountNum: "" },
-    },
-    submitForm,
-  });
-
-  const paymentInfo = values.paymentInfo;
-
   return (
     <>
-      <form className="payment_info_container" onSubmit={handleSubmit}>
+      <form className="payment_info_container" onSubmit={submitForm}>
         <h4 className="font-normal">How would you like to get paid?</h4>
 
         <InputField
           id="bank_name"
           type="text"
           label="Name of bank"
-          name="paymentInfo.bankName"
+          name="bankName"
           placeholder="GT bank..."
-          value={values.paymentInfo.bankName}
-          onChange={handleChange}
+          value={paymentInfo.bankName}
+          onChange={handleChangeForPaymentInfo}
         />
 
         <InputField
           id="acc_num"
           type="text"
           label="Account number"
-          name="paymentInfo.accountNum"
-          value={values.paymentInfo.accountNum}
+          name="accountNum"
+          value={paymentInfo.accountNum}
           placeholder="account number"
-          onChange={handleChange}
+          onChange={handleChangeForPaymentInfo}
         />
         <div className="mt-10">
           <button
-            type="button"
+            type="submit"
             onClick={submitForm}
             className="primary_button block"
           >

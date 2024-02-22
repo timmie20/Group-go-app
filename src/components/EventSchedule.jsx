@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
 
-const EventSchedule = ({ values, handleChange }) => {
+const EventSchedule = ({ eventInfo, handleChangeForEventInfo }) => {
   const [current, setCurrent] = useState("Single event");
 
   const schedules = ["Single event", "Montly", "Weekly", "Yearly"];
-
-  const handleScheduleChange = (e) => {
-    setCurrent(e.target.innerText);
-  };
 
   return (
     <>
@@ -20,7 +16,7 @@ const EventSchedule = ({ values, handleChange }) => {
               className={`schedule_period ${
                 current === schedule ? "selected_schedule_period" : ""
               }`}
-              onClick={handleScheduleChange}
+              onClick={(e) => setCurrent(e.target.innerText)}
             >
               {schedule}
             </span>
@@ -32,18 +28,18 @@ const EventSchedule = ({ values, handleChange }) => {
             id="start_date"
             type="date"
             label="Start Date"
-            name="eventInfo.startDate"
-            value={values.eventInfo.startDate}
-            onChange={handleChange}
+            name="startDate"
+            value={eventInfo.startDate}
+            onChange={handleChangeForEventInfo}
           />
 
           <InputField
             id="end_date"
             type="date"
             label="End Date"
-            name="eventInfo.endDate"
-            value={values.eventInfo.endDate}
-            onChange={handleChange}
+            name="endDate"
+            value={eventInfo.endDate}
+            onChange={handleChangeForEventInfo}
           />
         </div>
 
@@ -52,18 +48,18 @@ const EventSchedule = ({ values, handleChange }) => {
             id="start_time"
             type="time"
             label="Start Time"
-            name="eventInfo.startTime"
-            value={values.eventInfo.startTime}
-            onChange={handleChange}
+            name="startTime"
+            value={eventInfo.startTime}
+            onChange={handleChangeForEventInfo}
           />
 
           <InputField
             id="end_time"
             type="time"
             label="End Time"
-            name="eventInfo.endTime"
-            value={values.eventInfo.endTime}
-            onChange={handleChange}
+            name="endTime"
+            value={eventInfo.endTime}
+            onChange={handleChangeForEventInfo}
           />
         </div>
       </div>

@@ -6,9 +6,9 @@ const Navbar = () => {
   const { handleLogOut, user } = useContext(AuthContext);
   const [toggleDropDown, setToggleDropDown] = useState(false);
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
   return (
     <>
       <nav>
