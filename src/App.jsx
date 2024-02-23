@@ -6,6 +6,7 @@ import Home from "./Pages/Home";
 import CreateEvent from "./Pages/CreateEvent";
 import { AuthContextProvider } from "./context/AuthContext";
 import { FormContextProvider } from "./context/FormContext";
+import Event from "./Pages/Event";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
                 <Route path="/">
                   <Route index element={<Home />} />
                   <Route path="/create" element={<CreateEvent />} />
+                  <Route path="/:eventId" element={<Event />} />
                 </Route>
               </Routes>
             </AppLayout>

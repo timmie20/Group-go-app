@@ -8,10 +8,40 @@ import { FormContext } from "../context/FormContext";
 
 const TemplateEventForm = () => {
   const { selectedTemplate, setCurrentStep, stepData } = useContext(AppContext);
-  const { eventData, setEventData, handleChangeForEventInfo } =
+  const { eventData, setEventData, handleChangeForEventInfo, setImgUrl, imgUrl } =
     useContext(FormContext);
+    const [coverImg, setCoverImg] = useState(cover)
   const { eventInfo } = eventData;
   const { user } = useContext(AuthContext);
+
+  // const handleImg = (e) => {
+  //   e.preventDefault()
+  //   const file = e.target?.files[0]
+  //   setImgUrl(file)
+  //   console.log(file)
+
+  //   if (!file) return
+  // }
+
+  const handleImg = () => {
+    const fileInput = document.createElement('input')
+    fileInput.type = 'file'
+
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0]
+      const reader = new FileReader()
+      setImgUrl(file)
+
+      reader.onload = (e) => {
+        const uploadImageUrl = e.target.result
+        setCoverImg(uploadImageUrl)
+        addImageToState(uploadImageUrl)
+      }
+      reader.readAsDataURL(file)
+    })
+
+    fileInput.click()
+  }
 
   useEffect(() => {
     setEventData({
@@ -26,17 +56,15 @@ const TemplateEventForm = () => {
       <form className="event_info_form">
         <div className="mb-12 space-y-3">
           <p className="font-normal">{selectedTemplate.templateName}</p>
-          <div className="relative w-full">
+          <div className="relative w-full cursor-pointer">
+            <div className="relative w-full" onClick={handleImg}>
             <img
-              src={cover}
+              src={coverImg}
               alt="a cover image illustration of a resturant"
               className="h-[189px] w-full rounded-xl object-cover"
             />
-            <label
-              htmlFor="file-upload"
-              className="absolute inset-0 m-auto flex items-center justify-center"
-            >
-              <div className="flex items-center gap-3">
+            </div>
+              <div className="flex w-fit items-center gap-3 absolute top-0 bottom-0 left-0 right-0 m-auto">
                 <svg
                   width="18"
                   height="19"
@@ -53,13 +81,13 @@ const TemplateEventForm = () => {
                   Change event photo
                 </span>
               </div>
-              <input
+              {/* <input
                 id="file-upload"
                 name="file-upload"
                 type="file"
                 className="sr-only"
-              />
-            </label>
+                onChange={handleImg}
+              /> */}
           </div>
         </div>
 
