@@ -26,7 +26,7 @@ const StepProgress = () => {
     <>
       <div className="step_progress_container">
         <div className="flex flex-col gap-6">
-          <h2 className="leading-[68px]">{currentStep?.step}</h2>
+          <h2 className="">{currentStep?.step}</h2>
           <p>{currentStep?.about}</p>
           <p className="font-normal text-black ">{`step ${currentStep?.id} of ${stepData?.length}`}</p>
           <div className="flex flex-col gap-8">

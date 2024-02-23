@@ -4,9 +4,7 @@ import PaymentInformation from "../PaymentInformation";
 const PaymentPage = () => {
   return (
     <>
-      <div>
         <PaymentInformation />
-      </div>
     </>
   );
 };

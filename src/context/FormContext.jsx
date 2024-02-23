@@ -25,7 +25,7 @@ export const FormContextProvider = ({ children }) => {
     eventType: "",
     eventInfo: {
       creatorName: "",
-      creatorEmail: "",
+      creatorEmail: user?.email,
       socialLink: "",
       eventDesc: "",
       eventLocation: "",

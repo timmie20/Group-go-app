@@ -19,7 +19,10 @@ const CreateEvent = () => {
   return (
     <>
       <StepProgress />
-      {mapping[currentStep.page]}
+      {/* <div className="w-[479px] max-w-full"> */}
+      <div className="max-w-full tablet:w-[60%] w-full">
+        {mapping[currentStep.page]}
+      </div>
     </>
   );
 };

@@ -4,9 +4,7 @@ import TemplateEventForm from "../TemplateEventForm";
 const EventInfoPage = () => {
   return (
     <>
-      <div>
         <TemplateEventForm />
-      </div>
     </>
   );
 };
