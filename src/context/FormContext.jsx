@@ -12,6 +12,7 @@ export const FormContext = createContext(null);
 
 export const FormContextProvider = ({ children }) => {
   const { setCurrentStep, stepData } = useContext(AppContext);
+  const [loading, setLoading] = useState(false)
   const [imgUrl, setImgUrl] = useState(null)
   const [progresspercent, setProgresspercent] = useState()
   const { user } = useContext(AuthContext);
@@ -44,6 +45,7 @@ export const FormContextProvider = ({ children }) => {
   });
 
   const uploadCoverImage = () => {
+    setLoading(true)
     const storageRef = ref(storage, `images/${imgUrl.name}`)
     const uploadTask = uploadBytesResumable(storageRef, imgUrl)
 
@@ -54,6 +56,7 @@ export const FormContextProvider = ({ children }) => {
       },
       (error) => {
         console.log(error)
+        setLoading(false)
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -89,7 +92,9 @@ export const FormContextProvider = ({ children }) => {
       // console.log(newEventData)
       setCurrentStep(stepData[3]);
       console.log("event data added");
+      setLoading(false)
     } catch (error) {
+      setLoading(false)
       console.log(error.message);
     }
   };
@@ -104,6 +109,7 @@ export const FormContextProvider = ({ children }) => {
         uploadCoverImage,
         setImgUrl,
         imgUrl,
+        loading,
       }}
     >
       {children}

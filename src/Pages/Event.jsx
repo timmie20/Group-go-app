@@ -40,7 +40,7 @@ if (loading) {
 else if (event) {
   return (
     <div>
-        <img className='w-full h-[403px] object-cover' src={event?.eventImg} alt="" />
+        <img className='w-full h-[403px] object-cover rounded-[10px]' src={event?.eventImg} alt="" />
 
         <div className='flex gap-10 my-[55px]'>
             <div className='w-[50%] max-w-[50%] flex flex-col gap-[24px]'>

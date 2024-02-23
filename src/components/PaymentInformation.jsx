@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import InputField from "./InputField";
 import { FormContext } from "../context/FormContext";
+import loader from "../assets/images/loader.svg"
 
 const PaymentInformation = () => {
-  const { eventData, handleChangeForPaymentInfo, uploadCoverImage } =
+  const { eventData, handleChangeForPaymentInfo, uploadCoverImage, loading } =
     useContext(FormContext);
 
   const { paymentInfo } = eventData;
@@ -40,10 +41,11 @@ const PaymentInformation = () => {
         <div className="mt-10">
           <button
             type="submit"
+            disabled={loading}
             onClick={submitForm}
-            className="primary_button block"
+            className="primary_button flex items-center justify-center disabled:bg-[#EE9080] disabled:cursor-default"
           >
-            Continue
+            {!loading ? 'Continue' : <img src={loader} />}
           </button>
         </div>
       </form>
