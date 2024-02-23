@@ -46,7 +46,7 @@ export const FormContextProvider = ({ children }) => {
     const { name, value } = e.target;
     setEventData({
       ...eventData,
-      paymentInfoInfo: { ...eventData.paymentInfo, [name]: value },
+      paymentInfo: { ...eventData.paymentInfo, [name]: value },
     });
   };
 
