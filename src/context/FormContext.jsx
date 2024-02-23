@@ -1,17 +1,26 @@
 import React, { createContext, useContext, useState } from "react";
 import { AuthContext } from "./AuthContext";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { AppContext } from "./AppContext";
+import { nanoid } from 'nanoid';
+import cover from "../assets/images/resturant image.jpeg";
+import { storage } from "../config/firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage"
 
 export const FormContext = createContext(null);
 
 export const FormContextProvider = ({ children }) => {
   const { setCurrentStep, stepData } = useContext(AppContext);
+  const [imgUrl, setImgUrl] = useState(null)
+  const [progresspercent, setProgresspercent] = useState()
   const { user } = useContext(AuthContext);
 
   const [eventData, setEventData] = useState({
     uid: "",
+    eventImg: "",
+    totalAmount: 0,
+    eventId: nanoid(),
     eventType: "",
     eventInfo: {
       creatorName: "",
@@ -34,6 +43,28 @@ export const FormContextProvider = ({ children }) => {
     },
   });
 
+  const uploadCoverImage = () => {
+    const storageRef = ref(storage, `images/${imgUrl.name}`)
+    const uploadTask = uploadBytesResumable(storageRef, imgUrl)
+
+    uploadTask.on("state_changed",
+      (snapshot) => {
+        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+        setProgresspercent(progress)
+      },
+      (error) => {
+        console.log(error)
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log(downloadURL)
+          // setEventData({...eventData, eventImg: downloadURL})
+          handleEventCreation(downloadURL)
+        })
+      }
+    )
+  }
+
   const handleChangeForEventInfo = (e) => {
     const { name, value } = e.target;
     setEventData({
@@ -50,10 +81,12 @@ export const FormContextProvider = ({ children }) => {
     });
   };
 
-  const handleEventCreation = async () => {
-    const dofRef = doc(db, "event", user.uid);
+  const handleEventCreation = async (fileUrl) => {
+    const newEventData = {...eventData, eventImg: fileUrl}
+    const dofRef = doc(db, "event", newEventData.eventId);
     try {
-      await setDoc(dofRef, { eventData: eventData });
+      await setDoc(dofRef, { eventData: newEventData });
+      // console.log(newEventData)
       setCurrentStep(stepData[3]);
       console.log("event data added");
     } catch (error) {
@@ -68,7 +101,9 @@ export const FormContextProvider = ({ children }) => {
         setEventData,
         handleChangeForEventInfo,
         handleChangeForPaymentInfo,
-        handleEventCreation,
+        uploadCoverImage,
+        setImgUrl,
+        imgUrl,
       }}
     >
       {children}

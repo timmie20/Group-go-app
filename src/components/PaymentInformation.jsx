@@ -3,14 +3,14 @@ import InputField from "./InputField";
 import { FormContext } from "../context/FormContext";
 
 const PaymentInformation = () => {
-  const { eventData, handleChangeForPaymentInfo, handleEventCreation } =
+  const { eventData, handleChangeForPaymentInfo, uploadCoverImage } =
     useContext(FormContext);
 
   const { paymentInfo } = eventData;
 
   const submitForm = (e) => {
     e.preventDefault();
-    handleEventCreation();
+    uploadCoverImage();
   };
 
   return (

@@ -57,7 +57,7 @@ p {
 }
 
 .app_body {
-  @apply container relative mx-auto mb-9 mt-20 flex flex-col items-start gap-[56px] tablet:flex-row laptop:gap-[127px];
+  @apply container relative mx-auto mb-9 mt-20 flex flex-col items-start gap-[56px] tablet:flex-row laptop:justify-between;
 }
 
 .primary_button {
@@ -81,7 +81,7 @@ ul li {
 }
 
 .step_progress_container {
-  @apply container left-0 top-10 mx-auto flex w-[90%] flex-col items-center gap-12 rounded-[10px] tablet:sticky tablet:max-w-[376px] tablet:bg-white tablet:px-7 tablet:pt-8;
+  @apply container left-0 top-10 mx-auto flex w-[90%] flex-col items-center gap-12 rounded-[10px] tablet:mx-0 tablet:sticky tablet:max-w-[376px] tablet:bg-white tablet:px-7 tablet:pt-8;
 }
 
 .step_item {
@@ -149,7 +149,7 @@ ul li {
 }
 
 .payment_info_container {
-  @apply flex flex-col gap-[22px];
+  @apply flex flex-col gap-[22px] max-w-[479px];
 }
 
 .payment_info_container label {
@@ -157,7 +157,7 @@ ul li {
 }
 
 .share_link_container {
-  @apply flex max-w-[479px] flex-col gap-8;
+  @apply flex w-[full] max-w-[479px] flex-col gap-8;
 }
 
 .select_method_div {
