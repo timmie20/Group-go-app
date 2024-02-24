@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Avatar from "../assets/images/avatar.png";
+import menuBar from "../assets/images/menu-bar.svg";
 
 const Navbar = () => {
   const { handleLogOut, user } = useContext(AuthContext);
@@ -40,6 +41,7 @@ const Navbar = () => {
               </div>
             )}
           </ul>
+          <img className="tablet:hidden block" src={menuBar} alt="" />
         </div>
       </nav>
     </>

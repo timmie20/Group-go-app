@@ -9,6 +9,8 @@ import instagram from "../assets/images/instagram.svg"
 import mapImg from "../assets/images/map.svg"
 import dateImg from "../assets/images/date.svg"
 import moneyImg from "../assets/images/money.svg"
+import loader from "../assets/images/orange-loader.svg"
+import PageNotFound from './PageNotFound'
 
 const Event = () => {
     const [loading, setLoading] = useState(true)
@@ -34,16 +36,18 @@ const Event = () => {
     }
 if (loading) {
     return (
-        <div>Loading...</div>
+        <div className='w-full my-[56px] flex items-center justify-center'>
+            <img width={48} src={loader} alt="" />
+        </div>
     )
 } 
 else if (event) {
   return (
     <div>
-        <img className='w-full h-[403px] object-cover' src={event?.eventImg} alt="" />
+        <img className='w-full h-[403px] object-cover rounded-[10px]' src={event?.eventImg} alt="" />
 
-        <div className='flex gap-10 my-[55px]'>
-            <div className='w-[50%] max-w-[50%] flex flex-col gap-[24px]'>
+        <div className='flex flex-wrap gap-10 my-[55px]'>
+            <div className='w-fit max-w-full flex flex-col gap-[24px]'>
                 <div className='flex flex-col gap-[6px]'>
                     <h3>{event?.eventType}</h3>
                     <div className='flex items-center gap-[22px]'>
@@ -60,7 +64,7 @@ else if (event) {
 
                 <div>
                     <p>30 spots left</p>
-                    <button className='w-[530px] max-w-full rounded-[15px] bg-[#e2614b] text-[#fff] px-[24px] py-[10px]'>Apply for event</button>
+                    <button className='w-full rounded-[15px] bg-[#e2614b] text-[#fff] px-[24px] py-[10px]'>Apply for event</button>
                 </div>
 
                 <div>
@@ -77,7 +81,7 @@ else if (event) {
                 </div>
             </div>
 
-            <div className='w-[50%] max-w-[100%] flex flex-col gap-[18px]'>
+            <div className='w-fit max-w-full flex flex-col gap-[18px]'>
             <div className='flex gap-4'>
                 <div className='bg-[#f7f6f9] rounded-[10px] p-[18px] w-[50%] h-[149px] flex flex-col justify-between'>
                     <div className='flex gap-[8px] items-center'>
@@ -106,6 +110,7 @@ else if (event) {
             <div className='flex flex-col gap-[8px]'>
                 <p>Location</p>
                 <img src={mapImg} alt="" className="map w-full" />
+                {/* <div className="w-full"><iframe width="100%" height="281" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/">gps vehicle tracker</a></iframe></div> */}
             </div>
         </div>
         </div>
@@ -116,7 +121,7 @@ else if (event) {
 
 else {
     return (
-        <div>No event</div>
+        <PageNotFound />
     )
 }
 

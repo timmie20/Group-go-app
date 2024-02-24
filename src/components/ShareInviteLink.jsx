@@ -8,6 +8,7 @@ const ShareInviteLink = () => {
 
   const [selected, setSelected] = useState("Invite Link");
 
+
   const handleSelect = (e) => {
     const method = e.target.innerText;
     setSelected(method);

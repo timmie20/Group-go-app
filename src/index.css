@@ -14,7 +14,7 @@ html {
 body {
   font-family: "Excon", sans-serif;
   overscroll-behavior: auto;
-  @apply bg-[#f0f0f0];
+  @apply tablet:bg-[#f0f0f0] bg-[#fff];
 }
 
 h1 {
@@ -24,7 +24,6 @@ h1 {
 
 h2 {
   /* font-size: 48px; */
-  font-weight: 500;
   @apply text-[24px] tablet:text-[48px];
 }
 
@@ -34,8 +33,7 @@ h3 {
 }
 
 h4 {
-  font-size: 24px;
-  font-weight: 500;
+  @apply text-[20px] tablet:text-[20px] font-[400] tablet:font-[500];
 }
 
 h5 {
@@ -57,7 +55,8 @@ p {
 }
 
 .app_body {
-  @apply container relative mx-auto mb-9 mt-20 flex flex-col items-start gap-[56px] tablet:flex-row laptop:justify-between;
+  /* @apply container relative mx-auto mb-9 mt-20 flex flex-col items-start gap-[56px] tablet:flex-row laptop:justify-between; */
+  @apply container relative mx-auto px-[24px] mb-9 mt-20 flex flex-col gap-[56px] items-start tablet:flex-row laptop:justify-between;
 }
 
 .primary_button {
@@ -65,11 +64,11 @@ p {
 }
 
 nav {
-  @apply sticky z-10 h-fit w-full bg-white py-[18px] tablet:px-[48px];
+  @apply sticky z-10 h-fit w-full bg-white py-[18px] px-[24px];
 }
 
 .nav_items {
-  @apply container mx-auto flex w-[90%] items-center justify-between;
+  @apply container mx-auto flex items-center justify-between;
 }
 
 .nav_items ul {
@@ -81,7 +80,7 @@ ul li {
 }
 
 .step_progress_container {
-  @apply container left-0 top-10 mx-auto flex w-[90%] flex-col items-center gap-12 rounded-[10px] tablet:mx-0 tablet:sticky tablet:max-w-[376px] tablet:bg-white tablet:px-7 tablet:pt-8;
+  @apply left-0 top-10 flex flex-col items-center gap-12 rounded-[10px] tablet:sticky max-w-full tablet:w-[376px] tablet:max-w-full tablet:bg-white tablet:px-7 tablet:pt-8;
 }
 
 .step_item {
@@ -105,7 +104,7 @@ ul li {
 } */
 
 .event_info_form {
-  @apply mx-auto max-w-full;
+  @apply max-w-full;
 }
 
 .inputs {
@@ -114,10 +113,6 @@ ul li {
 
 .event_info_form label {
   @apply text-base font-normal text-black-clr;
-}
-
-.event_info_form h4 {
-  @apply mt-6 text-2xl font-normal text-black-clr;
 }
 
 .field_set_div {
@@ -145,11 +140,11 @@ ul li {
 }
 
 .event_schedule_duration {
-  @apply flex w-full items-center gap-8;
+  @apply flex flex-col laptop:flex-row w-full items-center gap-8;
 }
 
 .payment_info_container {
-  @apply flex flex-col gap-[22px] max-w-[479px];
+  @apply flex flex-col gap-[22px] max-w-full;
 }
 
 .payment_info_container label {
@@ -157,7 +152,7 @@ ul li {
 }
 
 .share_link_container {
-  @apply flex w-[full] max-w-[479px] flex-col gap-8;
+  @apply flex w-full flex-col gap-8;
 }
 
 .select_method_div {
