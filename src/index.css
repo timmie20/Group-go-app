@@ -14,7 +14,7 @@ html {
 body {
   font-family: "Excon", sans-serif;
   overscroll-behavior: auto;
-  @apply tablet:bg-[#f0f0f0] bg-[#fff];
+  @apply bg-[#fff] tablet:bg-[#f0f0f0];
 }
 
 h1 {
@@ -33,7 +33,7 @@ h3 {
 }
 
 h4 {
-  @apply text-[20px] tablet:text-[20px] font-[400] tablet:font-[500];
+  @apply text-[20px] font-[400] tablet:text-[20px] tablet:font-[500];
 }
 
 h5 {
@@ -56,7 +56,7 @@ p {
 
 .app_body {
   /* @apply container relative mx-auto mb-9 mt-20 flex flex-col items-start gap-[56px] tablet:flex-row laptop:justify-between; */
-  @apply container relative mx-auto px-[24px] mb-9 mt-20 flex flex-col gap-[56px] items-start tablet:flex-row laptop:justify-between;
+  @apply container relative mx-auto mb-9 mt-20 flex flex-col items-start gap-[56px] px-[24px] tablet:flex-row laptop:justify-between;
 }
 
 .primary_button {
@@ -64,7 +64,7 @@ p {
 }
 
 nav {
-  @apply sticky z-10 h-fit w-full bg-white py-[18px] px-[24px];
+  @apply sticky z-10 h-fit w-full bg-white px-[24px] py-[18px];
 }
 
 .nav_items {
@@ -80,7 +80,7 @@ ul li {
 }
 
 .step_progress_container {
-  @apply left-0 top-10 flex flex-col items-center gap-12 rounded-[10px] tablet:sticky max-w-full tablet:w-[376px] tablet:max-w-full tablet:bg-white tablet:px-7 tablet:pt-8;
+  @apply left-0 top-10 flex max-w-full flex-col items-center gap-12 rounded-[10px] tablet:sticky tablet:w-[376px] tablet:max-w-full tablet:bg-white tablet:px-7 tablet:pt-8;
 }
 
 .step_item {
@@ -140,11 +140,11 @@ ul li {
 }
 
 .event_schedule_duration {
-  @apply flex flex-col laptop:flex-row w-full items-center gap-8;
+  @apply flex w-full flex-col items-center gap-8 laptop:flex-row;
 }
 
 .payment_info_container {
-  @apply flex flex-col gap-[22px] max-w-full;
+  @apply flex max-w-full flex-col gap-[22px];
 }
 
 .payment_info_container label {
@@ -189,4 +189,8 @@ ul li {
 
 .signin_container {
   @apply relative w-full max-w-lg cursor-default overflow-hidden rounded-[20px] bg-white px-4 py-16 shadow-xl tablet:px-14;
+}
+
+.icon_text_block {
+  @apply flex gap-2;
 }

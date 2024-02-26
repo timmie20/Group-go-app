@@ -7,6 +7,7 @@ import CreateEvent from "./Pages/CreateEvent";
 import { AuthContextProvider } from "./context/AuthContext";
 import { FormContextProvider } from "./context/FormContext";
 import Event from "./Pages/Event";
+import Dashboard from "./Pages/Dashboard";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
                   <Route path="/create" element={<CreateEvent />} />
                   <Route path="/:eventId" element={<Event />} />
                 </Route>
+                <Route path="/dashboard" element={<Dashboard />} />
               </Routes>
             </AppLayout>
           </FormContextProvider>

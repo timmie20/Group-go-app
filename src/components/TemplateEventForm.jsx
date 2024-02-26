@@ -8,9 +8,14 @@ import { FormContext } from "../context/FormContext";
 
 const TemplateEventForm = () => {
   const { selectedTemplate, setCurrentStep, stepData } = useContext(AppContext);
-  const { eventData, setEventData, handleChangeForEventInfo, setImgUrl, imgUrl } =
-    useContext(FormContext);
-    const [coverImg, setCoverImg] = useState(cover)
+  const {
+    eventData,
+    setEventData,
+    handleChangeForEventInfo,
+    setImgUrl,
+    imgUrl,
+  } = useContext(FormContext);
+  const [coverImg, setCoverImg] = useState(cover);
   const { eventInfo } = eventData;
   const { user } = useContext(AuthContext);
 
@@ -24,24 +29,24 @@ const TemplateEventForm = () => {
   // }
 
   const handleImg = () => {
-    const fileInput = document.createElement('input')
-    fileInput.type = 'file'
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
 
-    fileInput.addEventListener('change', (event) => {
-      const file = event.target.files[0]
-      const reader = new FileReader()
-      setImgUrl(file)
+    fileInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      setImgUrl(file);
 
       reader.onload = (e) => {
-        const uploadImageUrl = e.target.result
-        setCoverImg(uploadImageUrl)
-        addImageToState(uploadImageUrl)
-      }
-      reader.readAsDataURL(file)
-    })
+        const uploadImageUrl = e.target.result;
+        setCoverImg(uploadImageUrl);
+        addImageToState(uploadImageUrl);
+      };
+      reader.readAsDataURL(file);
+    });
 
-    fileInput.click()
-  }
+    fileInput.click();
+  };
 
   useEffect(() => {
     setEventData({
@@ -58,30 +63,30 @@ const TemplateEventForm = () => {
           <p className="font-normal">{selectedTemplate.templateName}</p>
           <div className="relative w-full cursor-pointer">
             <div className="relative w-full" onClick={handleImg}>
-            <img
-              src={coverImg}
-              alt="a cover image illustration of a resturant"
-              className="h-[189px] w-full rounded-xl object-cover"
-            />
+              <img
+                src={coverImg}
+                alt="a cover image illustration of template cover"
+                className="h-[189px] w-full rounded-xl object-cover"
+              />
             </div>
-              <div className="flex w-fit items-center gap-3 absolute top-0 bottom-0 left-0 right-0 m-auto">
-                <svg
-                  width="18"
-                  height="19"
-                  viewBox="0 0 18 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 18.5C1.45 18.5 0.979333 18.3043 0.588 17.913C0.196667 17.5217 0.000666667 17.0507 0 16.5V2.5C0 1.95 0.196 1.47933 0.588 1.088C0.98 0.696667 1.45067 0.500667 2 0.5H16C16.55 0.5 17.021 0.696 17.413 1.088C17.805 1.48 18.0007 1.95067 18 2.5V16.5C18 17.05 17.8043 17.521 17.413 17.913C17.0217 18.305 16.5507 18.5007 16 18.5H2ZM2 16.5H16V2.5H2V16.5ZM3 14.5H15L11.25 9.5L8.25 13.5L6 10.5L3 14.5Z"
-                    fill="white"
-                  />
-                </svg>
-                <span className="text-[16px] font-medium text-white">
-                  Change event photo
-                </span>
-              </div>
-              {/* <input
+            <div className="absolute bottom-0 left-0 right-0 top-0 m-auto flex w-fit items-center gap-3">
+              <svg
+                width="18"
+                height="19"
+                viewBox="0 0 18 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 18.5C1.45 18.5 0.979333 18.3043 0.588 17.913C0.196667 17.5217 0.000666667 17.0507 0 16.5V2.5C0 1.95 0.196 1.47933 0.588 1.088C0.98 0.696667 1.45067 0.500667 2 0.5H16C16.55 0.5 17.021 0.696 17.413 1.088C17.805 1.48 18.0007 1.95067 18 2.5V16.5C18 17.05 17.8043 17.521 17.413 17.913C17.0217 18.305 16.5507 18.5007 16 18.5H2ZM2 16.5H16V2.5H2V16.5ZM3 14.5H15L11.25 9.5L8.25 13.5L6 10.5L3 14.5Z"
+                  fill="white"
+                />
+              </svg>
+              <span className="text-[16px] font-medium text-white">
+                Change event photo
+              </span>
+            </div>
+            {/* <input
                 id="file-upload"
                 name="file-upload"
                 type="file"
