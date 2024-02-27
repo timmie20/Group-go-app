@@ -5,20 +5,21 @@ import profileSvg from "../assets/images/profile.svg";
 const PreviewAvailableEvents = ({ currentPreview }) => {
   return (
     <div>
-      <div className="flex gap-8">
+      <div className="flex flex-col gap-8 laptop:flex-row laptop:items-center">
         <img
           src={currentPreview?.eventData.eventImg}
           alt=""
-          width={430}
-          className="rounded-[10px]"
+          className="h-[356px] w-full max-w-[439px] rounded-[10px]"
         />
-        <aside className="space-y-7">
+        <aside className="space-y-5">
           <div>
             <span className="icon_text_block">
               <img src={moneySvg} alt="" />
               Total commitment
             </span>
-            <h2 className="font-medium">N 150,000</h2>
+            <h2 className=" text-[24px] font-medium tablet:text-[32px] laptop:text-[46px]">
+              N 150,000
+            </h2>
           </div>
           <div>
             <div className="flex items-start gap-6">
@@ -41,7 +42,7 @@ const PreviewAvailableEvents = ({ currentPreview }) => {
             </div>
           </div>
           <div className="flex flex-col gap-3">
-            <button className="flex w-[440px] items-center justify-center gap-2 rounded-[15px] bg-orange-clr py-[10px] text-white">
+            <button className="flex items-center justify-center gap-2 rounded-[15px] bg-orange-clr py-[10px] text-white">
               <svg
                 width="21"
                 height="10"
@@ -56,7 +57,7 @@ const PreviewAvailableEvents = ({ currentPreview }) => {
               </svg>
               Go to event link
             </button>
-            <button className="w-[440px] rounded-[15px] border-[1px] border-[#E4E4E4] bg-white py-[10px]">
+            <button className="rounded-[15px] border-[1px] border-[#E4E4E4] bg-white py-[10px]">
               Send money to bank account{" "}
             </button>
           </div>

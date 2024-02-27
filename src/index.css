@@ -192,5 +192,5 @@ ul li {
 }
 
 .icon_text_block {
-  @apply flex gap-2;
+  @apply flex items-center gap-2 text-[12px] tablet:text-base;
 }

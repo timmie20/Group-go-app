@@ -12,8 +12,8 @@ import Signin from "../components/modals/Signin";
 const Dashboard = () => {
   const [eventList, setEventList] = useState([]);
   const [currentPreview, setCurrentPreview] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const { user, search, navigate } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const { user, navigate } = useContext(AuthContext);
 
   const getEventList = async () => {
     const eventsData = [];
@@ -34,7 +34,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getEventList();
-    console.log("hello");
+    // console.log("hello");
   }, []);
 
   if (loading) {
@@ -49,9 +49,9 @@ const Dashboard = () => {
         <div className="w-full space-y-16">
           <div className="space-y-5">
             <h5 className="text-[24px] font-medium">Events</h5>
-            <div className="flex items-center gap-5">
+            <div className="flex flex-col gap-3 tablet:flex-row">
               <div
-                className=" flex h-[208px] w-[256px] cursor-pointer flex-col items-center justify-center gap-2 rounded-[10px] border-[1px] border-[#E4E4E4] bg-white"
+                className="flex h-[206px] w-full max-w-[265px] cursor-pointer flex-col items-center justify-center gap-4 rounded-[10px] border-[1px] border-[#E4E4E4] bg-white"
                 onClick={() => navigate("/create")}
               >
                 <img src={addIcon} alt="" />
