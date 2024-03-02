@@ -3,19 +3,21 @@ import { AuthContext } from "./AuthContext";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 import { AppContext } from "./AppContext";
-import { nanoid } from 'nanoid';
+import { nanoid } from "nanoid";
 import cover from "../assets/images/resturant image.jpeg";
 import { storage } from "../config/firebase";
-import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage"
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 export const FormContext = createContext(null);
 
 export const FormContextProvider = ({ children }) => {
   const { setCurrentStep, stepData } = useContext(AppContext);
-  const [loading, setLoading] = useState(false)
-  const [imgUrl, setImgUrl] = useState(null)
-  const [progresspercent, setProgresspercent] = useState()
+  const [loading, setLoading] = useState(false);
+  const [imgUrl, setImgUrl] = useState(null);
+  const [progresspercent, setProgresspercent] = useState();
   const { user } = useContext(AuthContext);
+
+  // console.log(user);
 
   const [eventData, setEventData] = useState({
     uid: "",
@@ -25,7 +27,7 @@ export const FormContextProvider = ({ children }) => {
     eventType: "",
     eventInfo: {
       creatorName: "",
-      creatorEmail: user?.email,
+      creatorEmail: "",
       socialLink: "",
       eventDesc: "",
       eventLocation: "",
@@ -45,28 +47,31 @@ export const FormContextProvider = ({ children }) => {
   });
 
   const uploadCoverImage = () => {
-    setLoading(true)
-    const storageRef = ref(storage, `images/${imgUrl.name}`)
-    const uploadTask = uploadBytesResumable(storageRef, imgUrl)
+    setLoading(true);
+    const storageRef = ref(storage, `images/${imgUrl.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, imgUrl);
 
-    uploadTask.on("state_changed",
+    uploadTask.on(
+      "state_changed",
       (snapshot) => {
-        const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-        setProgresspercent(progress)
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+        );
+        setProgresspercent(progress);
       },
       (error) => {
-        console.log(error)
-        setLoading(false)
+        console.log(error);
+        setLoading(false);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log(downloadURL)
+          console.log(downloadURL);
           // setEventData({...eventData, eventImg: downloadURL})
-          handleEventCreation(downloadURL)
-        })
-      }
-    )
-  }
+          handleEventCreation(downloadURL);
+        });
+      },
+    );
+  };
 
   const handleChangeForEventInfo = (e) => {
     const { name, value } = e.target;
@@ -85,16 +90,16 @@ export const FormContextProvider = ({ children }) => {
   };
 
   const handleEventCreation = async (fileUrl) => {
-    const newEventData = {...eventData, eventImg: fileUrl}
+    const newEventData = { ...eventData, eventImg: fileUrl };
     const dofRef = doc(db, "event", newEventData.eventId);
     try {
       await setDoc(dofRef, { eventData: newEventData });
       // console.log(newEventData)
       setCurrentStep(stepData[3]);
       console.log("event data added");
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
-      setLoading(false)
+      setLoading(false);
       console.log(error.message);
     }
   };

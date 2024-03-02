@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import moneySvg from "../assets/images/money.svg";
 import profileSvg from "../assets/images/profile.svg";
+import { Link } from "react-router-dom";
 
 const PreviewAvailableEvents = ({ currentPreview }) => {
   return (
@@ -42,7 +43,10 @@ const PreviewAvailableEvents = ({ currentPreview }) => {
             </div>
           </div>
           <div className="flex flex-col gap-3">
-            <button className="flex items-center justify-center gap-2 rounded-[15px] bg-orange-clr py-[10px] text-white">
+            <Link
+              className="flex items-center justify-center gap-2 rounded-[15px] bg-orange-clr py-[10px] text-white"
+              to={`/${currentPreview?.eventData.eventId}`}
+            >
               <svg
                 width="21"
                 height="10"
@@ -56,7 +60,7 @@ const PreviewAvailableEvents = ({ currentPreview }) => {
                 />
               </svg>
               Go to event link
-            </button>
+            </Link>
             <button className="rounded-[15px] border-[1px] border-[#E4E4E4] bg-white py-[10px]">
               Send money to bank account{" "}
             </button>

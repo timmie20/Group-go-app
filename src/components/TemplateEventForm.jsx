@@ -17,16 +17,7 @@ const TemplateEventForm = () => {
   } = useContext(FormContext);
   const [coverImg, setCoverImg] = useState(cover);
   const { eventInfo } = eventData;
-  const { user } = useContext(AuthContext);
-
-  // const handleImg = (e) => {
-  //   e.preventDefault()
-  //   const file = e.target?.files[0]
-  //   setImgUrl(file)
-  //   console.log(file)
-
-  //   if (!file) return
-  // }
+  const { user, navigate } = useContext(AuthContext);
 
   const handleImg = () => {
     const fileInput = document.createElement("input");
@@ -54,7 +45,7 @@ const TemplateEventForm = () => {
       uid: user?.uid,
       eventType: selectedTemplate.templateName,
     });
-  }, []);
+  }, [navigate]);
 
   return (
     <>
@@ -86,13 +77,6 @@ const TemplateEventForm = () => {
                 Change event photo
               </span>
             </div>
-            {/* <input
-                id="file-upload"
-                name="file-upload"
-                type="file"
-                className="sr-only"
-                onChange={handleImg}
-              /> */}
           </div>
         </div>
 
@@ -113,7 +97,7 @@ const TemplateEventForm = () => {
             label="Email address"
             name="creatorEmail"
             placeholder="Your email address"
-            value={eventInfo.creatorEmail}
+            value={user?.email}
             onChange={handleChangeForEventInfo}
           />
           <InputField

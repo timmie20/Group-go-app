@@ -108,7 +108,7 @@ ul li {
 }
 
 .inputs {
-  @apply w-full rounded-[15px] border-[1px] border-[#06081121] bg-white px-6 py-[10px] font-light text-black-clr focus:outline-none;
+  @apply w-full rounded-[15px] border-[1px] border-[#06081121] bg-white px-6 py-[10px] font-light text-black-clr focus:outline-none disabled:opacity-40;
 }
 
 .event_info_form label {
@@ -193,4 +193,8 @@ ul li {
 
 .icon_text_block {
   @apply flex items-center gap-2 text-[12px] tablet:text-base;
+}
+
+.current_preview {
+  @apply absolute inset-0 h-3 rounded-t-[10px] bg-orange-clr;
 }

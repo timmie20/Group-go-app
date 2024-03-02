@@ -12,38 +12,47 @@ import Signin from "../components/modals/Signin";
 const Dashboard = () => {
   const [eventList, setEventList] = useState([]);
   const [currentPreview, setCurrentPreview] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [active, setActive] = useState(null);
+  const [loading, setLoading] = useState(true);
   const { user, navigate } = useContext(AuthContext);
 
-  const getEventList = async () => {
-    const eventsData = [];
-    try {
-      const querySnapshot = await getDocs(collection(db, "event"));
-      querySnapshot.forEach((docs) => {
-        eventsData.push(docs.data());
-      });
-      setEventList(
-        eventsData.filter((event) => event.eventData?.uid === user?.uid),
-      );
-      setLoading(false);
-      setCurrentPreview(eventList[0]);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   useEffect(() => {
-    getEventList();
-    // console.log("hello");
-  }, []);
+    const getEventList = async () => {
+      const eventsData = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "event"));
+        querySnapshot.forEach((doc) => {
+          eventsData.push(doc.data());
+        });
 
-  if (loading) {
+        const filteredEvents = eventsData.filter(
+          (event) => event.eventData?.uid === user?.uid,
+        );
+        setEventList(filteredEvents);
+
+        // Set initial values only after data is fetched
+        if (filteredEvents.length > 0) {
+          setCurrentPreview(filteredEvents[0]);
+          setActive(filteredEvents[0].eventData.eventId);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getEventList();
+  }, [user, navigate]);
+
+  if (!user) {
+    return <Signin />;
+  } else if (loading) {
     return (
       <div className="my-[56px] flex w-full items-center justify-center">
         <img width={48} src={loader} alt="" />
       </div>
     );
-  } else if (user) {
+  } else {
     return (
       <>
         <div className="w-full space-y-16">
@@ -61,6 +70,10 @@ const Dashboard = () => {
                 eventList.map((events) => (
                   <AvailableEvents
                     events={events}
+                    active={active}
+                    setActive={setActive}
+                    currentPreview={currentPreview}
+                    setCurrentPreview={setCurrentPreview}
                     key={events.eventData.eventId}
                   />
                 ))}
@@ -78,8 +91,6 @@ const Dashboard = () => {
         </div>
       </>
     );
-  } else {
-    return <Signin />;
   }
 };
 
