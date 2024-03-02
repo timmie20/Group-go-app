@@ -26,8 +26,13 @@ export const AuthContextProvider = ({ children }) => {
   const actionCodeSettings = {
     // URL you want to redirect back to. The domain (www.example.com) for this
     // URL must be in the authorized domains list in the Firebase Console.
-    // url: "https://groupgo.netlify.app/create",
-    url: "http://localhost:5173/create",
+
+    url: "https://groupgo.netlify.app/create",
+    // NOTE!!! ( comment out the above line for development )
+
+    // url: "http://localhost:5173/create",
+    // NOTE!!! ( comment out the above line for production )
+
     handleCodeInApp: true,
   };
 
